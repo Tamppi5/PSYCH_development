@@ -118,7 +118,7 @@
 - Class: text
   Output: We try to fix these issues by counter-balancing. Maybe some people receive A->B->C, others B->C->A, others C->A->B, others C->B->A. etc. If we present every possible order, then it is complete counterbalancing. If we only present some, we call it partial counterbalancing. 
   
- - Class: text
+- Class: text
   Output: For complete counterbalancing, the number of possibilities can grow very quickly. For example, if there are 5 conditions (A, B, C, D, E), complete counterbalancing would require presenting every possible order of these conditions. The total number of sequences would be 5! (5 factorial), which equals 120 different orders. For 10 conditions, the number of possible orders becomes 10! = 3,628,800, which is unfeasibly large for most experiments.
 
 #31 - Random Sampling
