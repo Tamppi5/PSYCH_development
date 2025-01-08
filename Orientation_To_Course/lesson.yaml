@@ -62,7 +62,7 @@
 - Class: mult_question
   Output: Other questions may be multiple-choice questions. To answer these, you can choose the number corresponding to the answer or type the answer out yourself. For example, the name of the course is PsychMetHCI. What is the name of the course?
   AnswerChoices: PsychMetHCI; R Programming; Swirl; Don't Think Too Hard
-  CorrectAnswer: PSYCH
+  CorrectAnswer: PsychMetHCI
   AnswerTests: omnitest(correctVal='PSYCH')
   Hint: Try typing PsychMetHCI or choose the number that represents that answer. 
   
