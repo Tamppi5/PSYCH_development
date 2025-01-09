@@ -113,12 +113,12 @@
   Output: This could be Practice Effects - when participants get better over time just because they are being exposed to the same questions, e.g., they learn how to use an interface. Or, they might be getting tired, and their scores may naturally go down (negative practice effects).
   
 - Class: text
-Output: There are also Carryover Effects - where the exposure to one condition is so strong it carries over to other conditions. For example, if users first interact with a highly responsive system, then a slow system, and finally a moderately responsive system, the frustration from the slow system might carry over into their evaluation of the moderately responsive system.
+  Output: There are also Carryover Effects - where the exposure to one condition is so strong it carries over to other conditions. For example, if users first interact with a highly responsive system, then a slow system, and finally a moderately responsive system, the frustration from the slow system might carry over into their evaluation of the moderately responsive system.
   
 - Class: text
   Output: We try to fix these issues by counter-balancing. Maybe some people receive A->B->C, others B->C->A, others C->A->B, others C->B->A. etc. If we present every possible order, then it is complete counterbalancing. If we only present some, we call it partial counterbalancing. 
   
- - Class: text
+- Class: text
   Output: For complete counterbalancing, the number of possibilities can grow very quickly. For example, if there are 5 conditions (A, B, C, D, E), complete counterbalancing would require presenting every possible order of these conditions. The total number of sequences would be 5! (5 factorial), which equals 120 different orders. For 10 conditions, the number of possible orders becomes 10! = 3,628,800, which is unfeasibly large for most experiments.
 
 #31 - Random Sampling
