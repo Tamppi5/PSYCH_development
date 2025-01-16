@@ -210,7 +210,7 @@
 
 #42
 - Class: mult_question
-  Output: "So, let's look at Quiz 1. We see that there are many values towards the right side. There are some outliers to the left side. We discussed how the mean is sensitive to outliers."
+  Output: "So, let's look at Quiz 3. We see that there are many values towards the right side. There are some outliers to the left side. We discussed how the mean is sensitive to outliers."
   AnswerChoices: Positive Skew;Negative Skew;No Skew
   CorrectAnswer: Negative Skew
   AnswerTests: omnitest(correctVal='Negative Skew')
@@ -224,7 +224,7 @@
 
 #44
 - Class: mult_question
-  Output: "So, let's look at Quiz 3. We see that the values are equally distributed."
+  Output: "So, let's look at Quiz 1. We see that the values are equally distributed."
   AnswerChoices: Positive Skew;Negative Skew;No Skew
   CorrectAnswer: No Skew
   AnswerTests: omnitest(correctVal='No Skew')
