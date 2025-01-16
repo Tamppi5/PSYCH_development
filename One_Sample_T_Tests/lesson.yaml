@@ -21,7 +21,7 @@
   Output: "There are two main assumptions for a one-sample t-test. \n\n (1) The data is randomly sampled from the population. \n\n (2) The variable is normally distributed in the population."
 
 - Class: text
-  Output: In psychology, we generally utilize a one-sample t-test to compare against a scale midpoint to show more agreement with some hypothesized value, e.g. how much you like a digital service (1 to 7; Bad = 1; 7 = good; midpoint at 3 = neutral)."
+  Output: In psychology, we generally utilize a one-sample t-test to compare against a scale midpoint to show more agreement with some hypothesized value, e.g. how much you like a digital service (1 to 7; Bad = 1; 7 = good; midpoint at 4 = neutral)."
 
 
 - Class: text
