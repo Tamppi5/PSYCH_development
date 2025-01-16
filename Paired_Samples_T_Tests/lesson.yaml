@@ -139,7 +139,7 @@
   Hint: Generally, we've been using summary(). So, type habits_long |> summary().
 
 - Class: cmd_question
-  Output: With this long dataset, pipe it into t_test() in the rstatix package. The variables have new names now, but we can set it as a formula. So, two arguments - Response ~ Type and paired=TRUE.
+  Output: With this long dataset, pipe it into t_test() in the rstatix package. The variables have new names now, but we can set it as a formula. So, three arguments: Response ~ Type, data=_ and paired=TRUE.
   CorrectAnswer: habits_long |> t_test(Response ~ Type, data=_, paired=TRUE)
   AnswerTests: omnitest(correctExpr='habits_long |> t_test(Response ~ Type, data=_, paired=TRUE)')
   Hint: habits_long |> t_test(Response ~ Type, data=_, paired=TRUE)
