@@ -91,7 +91,7 @@
   AnswerTests: omnitest(correctExpr='activism |> select(TOT, CARE) |> cor_test()')
   
 - Class: cmd_question
-  Output: If your data fits a Spearman correlation, add the argument method="spearman" to many of these functions. Hit the up arrow until you get to your corr.test() function, and then add method="spearman" as an argument. 
+  Output: If your data fits a Spearman correlation, add the argument method="spearman" to many of these functions. Take your data, activism, and pipe it into corr.test() function. Then add method="spearman" as an argument. 
   CorrectAnswer: activism |> corr.test(method="spearman")
   Hint: activism |> corr.test(method="spearman")
   AnswerTests: any_of_exprs('activism |> corr.test(method="spearman")', 'activism |> corr.test(method="spearman") |> print(short=FALSE)')
