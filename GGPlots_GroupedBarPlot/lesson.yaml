@@ -7,7 +7,7 @@
   Version: 3.0.0
 #1
 
-- Class: script
+- Class: scriptpsum
   Output: Here are some notes for this module. When you've saved the notes, type submit().
   AnswerTests: script_results_identical('saved')
   Hint: Make sure the last line in your script says saved <- "Y".
@@ -53,7 +53,7 @@
   
 #10
 - Class: cmd_question
-  Output: Let's start by setting up our ggplot space. Take your new dataframe, psum, and pipe (|>) it into ggplot(). ggplot() will take one argument. The argument, aes(), is a function so that it will take three arguments. aes() stands for aesthetics - what do we want our plot to look like? Well, we want the x-axis to be the factor of Target (x=Target), we want the y-axis to be the new response variable (we called it mean), and we want to fill our colors with the other factor, Perspective (fill=Perspective). Enter that now.
+  Output: Let's start by setting up our ggplot space. Take your new dataframe, p_sum, and pipe (|>) it into ggplot(). ggplot() will take one argument. The argument, aes(), is a function so that it will take three arguments. aes() stands for aesthetics - what do we want our plot to look like? Well, we want the x-axis to be the factor of Target (x=Target), we want the y-axis to be the new response variable (we called it mean), and we want to fill our colors with the other factor, Perspective (fill=Perspective). Enter that now.
   CorrectAnswer: p_sum |> ggplot(aes(x=Target, y=mean, fill=Perspective))
   AnswerTests: omnitest(correctExpr='p_sum |> ggplot(aes(x=Target, y=mean, fill=Perspective))')
   Hint: Maybe you got tripped up where everything goes? Try p_sum |> ggplot(aes(x=Target, y=mean, fill=Perspective))
