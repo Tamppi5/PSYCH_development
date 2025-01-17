@@ -94,7 +94,7 @@
   Output: If your data fits a Spearman correlation, add the argument method="spearman" to many of these functions. Hit the up arrow until you get to your corr.test() function, and then add method="spearman" as an argument. 
   CorrectAnswer: activism |> corr.test(method="spearman")
   Hint: activism |> corr.test(method="spearman")
-  AnswerTests: omnitest(any_of_exprs="activism |> corr.test(method='spearman')", 'activism |> corr.test(method="spearman") |> print(short=FALSE)')
+  AnswerTests: any_of_exprs('activism |> corr.test(method="spearman")', 'activism |> corr.test(method="spearman") |> print(short=FALSE)')
 
 - Class: mult_question
   Output: Adjusting for multiple tests, what is the p-value for the correlation between TOT and age?
