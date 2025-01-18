@@ -88,7 +88,7 @@
 #15
 - Class: mult_question
   Output: "Is doing something like this interally valid, externally valid, both, or neither?"
-  AnswerChoices: Externally valid;Externally valid;Both internally valid and externally valid;Neither internally valid nor externally valid 
+  AnswerChoices: Externally valid;Internally valid;Both internally valid and externally valid;Neither internally valid nor externally valid 
   CorrectAnswer: Both internally valid and externally valid
   AnswerTests: omnitest(correctVal="Both internally valid and externally valid")
   Hint: Interval validity means we have controlled for everything we can. Externally valid means we can generalize out to the greater population. 
