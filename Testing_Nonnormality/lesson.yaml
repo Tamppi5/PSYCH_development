@@ -57,7 +57,7 @@
   Hint: qqline(Stickers$Difference.Kept)
   
 - Class: text
-  Output: Great. If the data were normal, the points would be surround the line.
+  Output: Great. If the data were normal, the points would surround the line.
 
 - Class: mult_question
   Output: "Do you think these data points surround the line well? "
