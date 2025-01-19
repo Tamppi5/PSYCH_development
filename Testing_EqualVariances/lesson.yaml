@@ -14,7 +14,7 @@
   Script: Notes.R
 
 - Class: text
-  Output: You may want to exit() if you have not first reviewed your basics on GGPlot, specifically on the violin plot and facet_grid(). 
+  Output: If you have not first reviewed the basics on GGPlot, specifically on the violin plot and facet_grid(), you may want to complete these modules first. 
 
 - Class: text
   Output: Many of our parametric tests come with the assumption that each group we are analyzing has the same variance. We also can expand this definition when we turn to regressions, where we are assuming that the variance remains the same across the range of values.
@@ -141,7 +141,7 @@
   Hint: df2 |> levene_test(Expected ~ Condition)
 
 - Class: cmd_question
-  Output: Uh oh! That is not what they had. While our df1 (3) and df2 (1097) are the same, our test statistics (3.77 v 0.827) and p values (p=.01 v. p=.479) are different. We might wonder what is going on. Let's pull up the help file of levene_test().
+  Output: Uh oh! That is not what they had. While our df1 (3) and df2 (1097) are the same, our test statistics (3.77 v 0.827) and p values (p=.01 v. p=.479) are different. We might wonder what is going on. Let's pull up the help file of levene_test(). You can view the help file by running ?function_name, with question mark in front.
   CorrectAnswer: ?levene_test
   AnswerTests: any_of_exprs('?levene_test', '?levene_test()')
   Hint: ?levene_test
@@ -200,15 +200,12 @@
   Hint: Write summary(cLM)
 
 - Class: text
-  Output: Nice job!
-
-- Class: text
   Output: Remember, the simplest explanation of a regression is trying to draw a line of best fit through a scatterplot. We use these coefficients to estimate what our data says is our most expected observation, given specific values. We call this the "fitted" value. But these fitted values differ from the truth - what our data shows. We call that distance from the estimated line to the actual points of the residuals.
 
 #50 
 
 - Class: cmd_question
-  Output: We can pass cLM into ggplot(), naming the aes() for x to be .fitted and y to be .resid. Add on a point geom (geom_point()) after the ggplot call.
+  Output: We can pipe cLM into ggplot(), naming the aes() for x to be .fitted and y to be .resid. Add on a point geom (geom_point()) after the ggplot call.
   CorrectAnswer: cLM |> ggplot(aes(x=.fitted, y=.resid))+geom_point()
   AnswerTests: omnitest(correctExpr='cLM |> ggplot(aes(x=.fitted, y=.resid))+geom_point()')
   Hint: cLM |> ggplot(aes(x=.fitted, y=.resid))+geom_point()
@@ -217,7 +214,7 @@
   Output: You should review the regression module for more information, but there is a clear < spreading pattern in this case. The residuals grow in size as we move across the x-axis. This funnel shape is a good sign that we might have heteroskedasticity - that the variance is not the same across all levels of X.
   
 - Class: cmd_question
-  Output: The library lmtest has a function called bptest(). This stands for the Breusch-Pagan Test, a test for the heteroscedasticity of residuals if given a model. Pass our model, cLM, into bptest().
+  Output: The library lmtest has a function called bptest(). This stands for the Breusch-Pagan Test, a test for the heteroscedasticity of residuals if given a model. Pass our model, cLM, as argument into bptest().
   CorrectAnswer: bptest(cLM)
   AnswerTests: omnitest(correctExpr='bptest(cLM)')
   Hint: bptest(cLM)
