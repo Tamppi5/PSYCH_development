@@ -258,9 +258,9 @@
 - Class: mult_question
   Output: "Researchers are interested in studying user engagement with a new productivity software. They present users with either a simplified or a complex version of the interface, and also vary whether users receive a tutorial (half receive one, half do not). Participants are then asked to rate their satisfaction with the software on a scale of 1-Strongly Disagree to 7-Strongly Agree. \n\n What is the scale of measurement of this dependent variable? \n\n For citation see Smith, A. B., Jones, C. D., 2023. The impact of interface complexity on user engagement."
   AnswerChoices: Nominal;Ordinal;Interval;Ratio
-  CorrectAnswer: Interval
-  AnswerTests: omnitest(correctVal='Interval')
-  Hint: Nominal=name. Ordinal=order only. Can we subtract the differences and have it still make sense?
+  CorrectAnswer: Ordinal
+  AnswerTests: omnitest(correctVal='Ordinal')
+  Hint: Likert-type scales are most often considered to be in ranking order.
 
 #56 - IV
 - Class: mult_question
