@@ -19,7 +19,7 @@
   Output: "In the modules, we'll review how important these assumptions are,  the limitations of the nonparametric tests, and even the tests that we'll talk about today."
 
 - Class: text
-  Output: "There are three main ways we can test for non-normality. \n\n 1. QQPlots (A visual test) \n\n 2. Multiple histograms (A visual test) \n\n 3. Shapiro-Wilk Test (or d'agostino test). "
+  Output: "There are three main ways we can test for non-normality. \n\n 1. QQPlots (A visual test) \n\n 2. Multiple histograms (A visual test) \n\n 3. Shapiro-Wilk Test (or d'agostino test), which was covered in the module One-sample t-tests. "
 
 - Class: text
   Output: The first one we will go over is a QQPlot. 
