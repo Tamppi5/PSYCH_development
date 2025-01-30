@@ -219,8 +219,14 @@
   AnswerTests: omnitest(correctExpr='signrank <- wilcox.test(Stickers$Liked.Kept, Stickers$Disliked.Kept, exact=FALSE, paired=TRUE)')
   Hint: signrank <- wilcox.test(Stickers$Liked.Kept, Stickers$Disliked.Kept, exact=FALSE, paired=TRUE)
 
+- Class: cmd_question
+  Output: Now type names(signrank) in console to see what variables the data contains.
+  CorrectAnswer: names(signrank)
+  AnswerTests: omnitest(correctExpr='names(signrank)')
+  Hint: names(signrank)
+
 - Class: mult_question
-  Output: If you were to type signrank$ into your console, a list of possible variables would show up. Which of the following does not appear? 
+  Output: Now a list of possible variables would show up. Which of the following did not appear? 
   AnswerChoices: statistic; parameter; p.value; null.value; alternative; method; data.name; sign
   CorrectAnswer: sign
   AnswerTests: omnitest(correctVal='sign')
@@ -237,3 +243,4 @@
 - Class: text
   Output: And that's it! Remember, if we're doing a signed rank test, we want to find a way to tell R that we are using paired data. We taught this method through Pair(), but you could also include the DifferenceScore but set paired=TRUE. 
 
+  
