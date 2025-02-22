@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychology Statistics
-  Lesson: Validity & Reliability
-  Author: Kevin Carriere
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Validity_&_Reliability
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Georgetown University
-  Version: 2.4.3
+  Organization: Aalto University
+  Version: 4.0.0
 
 #swirlify("L3_Validity_&_Reliability", "UGPsychStats")
 

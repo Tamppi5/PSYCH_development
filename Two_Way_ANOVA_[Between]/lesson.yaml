@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychology Statistics
-  Lesson: Two-Way ANOVA [Between]
-  Author: Kevin R. Carriere & Jason Kilgore
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Two_Way_ANOVA_[Between]
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Washington & Jefferson College
-  Version: 2.4.3
+  Organization: Aalto University
+  Version: 4.0.0
 
 #1
 - Class: script

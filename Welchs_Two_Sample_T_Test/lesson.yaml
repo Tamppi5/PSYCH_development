@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychological Statistics You Can Handle
-  Lesson: Welch's Two-Sample T-Tests
-  Author: Kevin R. Carriere, Jason Kilgore
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Welchs_Two_Sample_T_Test
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Washington & Jefferson College
-  Version: 2.4.3
+  Organization: Aalto University
+  Version: 4.0.0
 
 - Class: script
   Output: To save the notes for this module, copy and paste the code provided into your RNotebook. Type submit() when you have finished saving these notes. 
@@ -69,7 +69,7 @@
   Output: The authors write - "A Welch two-sample t-test was conducted to test the effect of condition on perceptions of morality. Participants viewed the target who concealed as less moral (M = 1.74, SE = 0.08) than the target who disclosed (M = 3.49, SE = 0.09; t(404.41) = 14.54, p < .001, d = 1.39; see Fig. 1 for all Study 1 results)."
   
 - Class: text
-  Output: Prior, they wrote, "Homogeneity of variance was assessed for each model prior to analysis. Student’s t-tests were computed where that assumption was met, and Welch's t-tests were conducted where it was not."
+  Output: Prior, they wrote, "Homogeneity of variance was assessed for each model prior to analysis. Student's t-tests were computed where that assumption was met, and Welch's t-tests were conducted where it was not."
 
 - Class: text
   Output: Thus, the authors suggest that the variances of perceptions of morality are not equal between the groups. How can we test that? 
@@ -141,6 +141,6 @@
   Output: Since we rarely have a study with groups as small as 5, it seems best practice to use Welch's as the default, mainly due to a minimal loss of power.
   
 - Class: text
-  Output: Citations are also in the Notes; see de Winter, J. C. F. (2013). Using the Student’s t-test with extremely small sample sizes. Practical Assessment, Research, and Evaluation, 18(10). doi.org/10.7275/E4R6-DJ05 and Delacre, M., Lakens, D., & Leys, C. (2017). Why Psychologists Should by Default Use Welch’s t-test Instead of Student’s t-test. International Review of Social Psychology, 30(1), 92–101. doi.org/10.5334/irsp.82
+  Output: Citations are also in the Notes; see de Winter, J. C. F. (2013). Using the Student's t-test with extremely small sample sizes. Practical Assessment, Research, and Evaluation, 18(10). doi.org/10.7275/E4R6-DJ05 and Delacre, M., Lakens, D., & Leys, C. (2017). Why Psychologists Should by Default Use Welch's t-test Instead of Student's t-test. International Review of Social Psychology, 30(1), 92–101. doi.org/10.5334/irsp.82
   
     

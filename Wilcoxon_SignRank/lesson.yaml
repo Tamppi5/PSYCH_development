@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychological Statistics You Can Handle
-  Lesson: Wilcoxon Signed Rank Test for Paired Samples
-  Author: Kevin R. Carriere
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Wilcoxon_SignRank
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Washington & Jefferson College
-  Version: 2.4.3
+  Organization: Aalto University
+  Version: 4.0.0
 
 #1
 - Class: script
@@ -32,7 +32,7 @@
   Output: We are going to examine two papers within this Module. In the first study, Knight & Preston (2023) wondered if how we take photos of ourselves - selfies - impact how others perceive us. They examined this question over four studies.
 
 - Class: text
-  Output: The citation for this paper is - Knight, R., & Preston, C. (2023). Do selfies make women look slimmer? The effect of viewing angle on aesthetic and weight judgments of women’s bodies. PLoS ONE, 18(10), e0291987. https://doi.org/10.1371/journal.pone.0291987
+  Output: The citation for this paper is - Knight, R., & Preston, C. (2023). Do selfies make women look slimmer? The effect of viewing angle on aesthetic and weight judgments of women's bodies. PLoS ONE, 18(10), e0291987. https://doi.org/10.1371/journal.pone.0291987
   
 - Class: text
   Output: We will examine Study 1, where they exposed women who were 18 years old or older and did not have a history of eating disorders to view 20 photos of female models (excluding their head) who were asked to wear form-fitting clothes that they would exercise in.
@@ -42,7 +42,7 @@
 
 #11
 - Class: text
-  Output: For each photo, participants rated, on a scale from 0 to 100, both attractiveness (anchored with ‘Very Unattractive’ and ‘Very Attractive’) and weight (‘Very Underweight’ and ‘Very Overweight’). 
+  Output: For each photo, participants rated, on a scale from 0 to 100, both attractiveness (anchored with 'Very Unattractive' and 'Very Attractive') and weight (Very Underweight' and 'Very Overweight'). 
   
 - Class: cmd_question
   Output: Let's look at the data now by piping (|>) our dataset (Selfies) into head(). 

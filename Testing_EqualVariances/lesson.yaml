@@ -1,10 +1,10 @@
 - Class: meta
-  Course: PSYCH - Psychological Statistics You Can Handle
-  Lesson: Homogeneity of Variances - Levene's Test
-  Author: Kevin R. Carriere & Jason Kilgore
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Testing_EqualVariances
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Washington & Jefferson College
-  Version: 3.0.0
+  Organization: Aalto University
+  Version: 4.0.0
 
 #1
 - Class: script

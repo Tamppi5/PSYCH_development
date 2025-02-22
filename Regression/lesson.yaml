@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychological Statistics You Can Handle
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
   Lesson: Regression
-  Author: Kevin R. Carriere & Jason Kilgore
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Washington & Jefferson College
-  Version: 3.0.0
+  Organization: Aalto University
+  Version: 4.0.0
 
 #1
 - Class: script

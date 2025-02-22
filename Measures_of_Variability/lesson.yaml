@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychology Statistics
-  Lesson: Measures of Variability
-  Author: Kevin R. Carriere
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Measures_of_Variability
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Georgetown University
-  Version: 2.4.3
+  Organization: Aalto University
+  Version: 4.0.0
 
 - Class: text
   Output: Just like the measures of central tendency, there are various ways to measure the variability of the data.

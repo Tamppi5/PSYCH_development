@@ -1,10 +1,10 @@
 - Class: meta
-  Course: PsychMetHCI - Psychological Methods in Human-Computer Interaction; adapted from PSYCH (Psychological Statistics You Can Handle)
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
   Lesson: Variables
-  Author: Robin Welsch
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
   Organization: Aalto University
-  Version: 1.0.0
+  Version: 4.0.0
  
 #1
 - Class: text

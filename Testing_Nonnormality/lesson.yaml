@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychological Statistics You Can Handle
-  Lesson: Testing For Non-Normality
-  Author: Kevin R. Carriere
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Testing_Nonnormality
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Washington & Jefferson College
-  Version: 3.0.0
+  Organization: Aalto University
+  Version: 4.0.0
 
 - Class: script
   Output: To save the notes for this module, copy and paste the code provided into your RNotebook. Type submit() when you have finished saving these notes. 

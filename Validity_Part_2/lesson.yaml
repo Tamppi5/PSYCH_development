@@ -1,10 +1,10 @@
 - Class: meta
-  Course: Psychology Statistics
-  Lesson: Validity Part 2
-  Author: Kevin Carriere
+  Course: PsychMetHCI - Statistical Methods in Human-Computer Interaction
+  Lesson: Validity_Part_2
+  Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
-  Organization: Georgetown University
-  Version: 2.4.3
+  Organization: Aalto University
+  Version: 4.0.0
 
 - Class: text
   Output: "We will now discuss the differences of internal and external validity."
