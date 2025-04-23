@@ -8,13 +8,13 @@
  
 #1
 - Class: text
-  Output: Welcome to PsychMetHCI- Psychological Methods in Human-Computer Interaction. In this course, you will learn about about psychological research methods and statistics for Human-Computer Interaction. The course is adapted from adapted from PSYCH (Psychological Statistics You Can Handle) by  Kevin R. Carriere & Jason Kilgore.
+  Output: Welcome to PsychMetHCI- Statistical Methods in Psychology and Human-Computer Interaction. In this course, you will learn about psychological research methods and statistics for analyzing human behavior and mental processes in different contexts. The course was originally developed by Kevin R. Carriere & Jason Kilgore.
 
 - Class: text
   Output: In the course, we provide you with the knowledge and tools to plan studies and perform fundamental analyses in R, including transforming data, visualizing data, and engaging in various types of hypothesis tests.
 
 - Class: text
-  Output: Each module should take between 10 to 20 minutes to complete.
+  Output: Each module should take between 15 to 40 minutes to complete.
 
 - Class: text
   Output: Each module will follow the same basic formula.
@@ -70,6 +70,7 @@
   Output: Finally, other questions will show scripts and ask you to fill in the correct answers. We use these when you need to see how coding is written in a script instead of in the Console.
 
 - Class: text
-  Output: We provide throughout the course all citations for any data we are using (all open access data) and any citations for any statistical choices we make.
-  
+  Output: All citations for any data we are using (all open access data) and any citations for any statistical choices are provided throughout the course.
 
+- Class: text
+  Output: We encourage you to consider the contents of the modules carefully while working through them and that you revise parts that might seem unclear on the first go.
