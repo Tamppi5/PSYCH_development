@@ -15,7 +15,7 @@
   
 #2
 - Class: text
-  Output: "In this lesson, we're going to review rStudio. If you are using base R, please download rStudio."
+  Output: "In this lesson, we're going to review RStudio. If you are using base R, please download rStudio."
 
 #3
 - Class: text
@@ -278,6 +278,22 @@
 #52
 - Class: text
   Output: "Alright! That's about everything! We will frequently say take function X() and pass it three arguments, so you will want to ensure you understand what I'm saying!"
+
+#99
+- Class: mult_question
+  Output: "Which function shows a *compact* overview of every column's type?"
+  AnswerChoices: View();str();mean();install.packages()
+  CorrectAnswer: str()
+  AnswerTests: omnitest(correctVal="str()")
+
+- Class: mult_question
+  Output: "Why do we write `psych::describe()` instead of just `describe()`?"
+  AnswerChoices: To pick the function from the *psych* package;Because :: is faster;We must do it for base R
+  CorrectAnswer: To pick the function from the *psych* package
+  AnswerTests: omnitest(correctVal="To pick the function from the *psych* package")
+
+- Class: text
+  Output: "🎉  Nice job — you are ready for the next module!"
 
 
   
