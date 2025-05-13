@@ -326,6 +326,7 @@
   CorrectAnswer: str()
   AnswerTests: omnitest(correctVal="str()")
 
+#57
 - Class: text
   Output: "Nice job — you are ready for the next module!"
 
