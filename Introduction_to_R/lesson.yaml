@@ -8,7 +8,7 @@
 
 - Class: text
   Output: |
-    🧠 Learning objectives  
+    Learning objectives  
     After this short lesson you will be able to  
     • navigate the 4 panes of **RStudio**,  
     • install & load an R package,  
@@ -29,7 +29,7 @@
 
 #3
 - Class: text
-  Output: "The first thing to understand is what you're looking at. We have four corners of rStudio. \n\n The top left is where scripts and files will be uploaded. \n\n The top right is our Environment. This is where our datasets, variables, and functions will be stored. There are other tabs here- history and presentation - that we can ignore. You can see in Environment we have one dataset called data and two values called variable and variable_two. \n\n The bottom left is where we are! This is where we'll be typing the most to interact with this class. Our output - what happens after we give code - also shows here.\n\n The bottom right has a lot of info. Sometimes, plots will display that we'll make under plots. Packages are a ton of different programs others have made - like this package, swirl. If you like games, you might consider packages to be like downloadable content or DLC. Finally, the help tab will show us info about functions. \n\n If you aren't seeing four windows, you might want to look for some horizontal or vertical bars that you can drag and expand to make each window smaller or larger." 
+  Output: "The first thing to understand is what you're looking at. We have four corners of RStudio. \n\n The top left is where scripts and files will be uploaded. \n\n The top right is our Environment. This is where our datasets, variables, and functions will be stored. There are other tabs here- history and presentation - that we can ignore. You can see in Environment we have one dataset called data and two values called variable and variable_two. \n\n The bottom left is where we are! This is where we'll be typing the most to interact with this class. Our output - what happens after we give code - also shows here.\n\n The bottom right has a lot of info. Sometimes, plots will display that we'll make under plots. Packages are a ton of different programs others have made - like this package, swirl. If you like games, you might consider packages to be like downloadable content or DLC. Finally, the help tab will show us info about functions. \n\n If you aren't seeing four windows, you might want to look for some horizontal or vertical bars that you can drag and expand to make each window smaller or larger." 
 
 #4
 - Class: text
