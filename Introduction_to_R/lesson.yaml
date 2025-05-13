@@ -330,8 +330,8 @@
 
 - Class: mult_question
   Output: "Why do we write `psych::describe()` instead of just `describe()`?"
-  AnswerChoices: To pick the function from the *psych* package;Because :: is faster;We must do it for base R
-  CorrectAnswer: To pick the function from the *psych* package
+  AnswerChoices: "To pick the function from the *psych* package;Because :: is faster;We must do it for base R"
+  CorrectAnswer: "To pick the function from the *psych* package"
   AnswerTests: omnitest(correctVal="To pick the function from the *psych* package")
 
 - Class: text
