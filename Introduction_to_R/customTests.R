@@ -1,3 +1,5 @@
+library(base64enc)
+
 # Intro to R
 
 getState <- function(){
