@@ -84,9 +84,7 @@
     Another way to inspect a data set—without opening a separate tab—is the
     function `str()` (short for **str**ucture).  
     In the Console, type  
-    ```r
     str(data)
-    ```  
     and hit Enter.
   CorrectAnswer: str(data)
   AnswerTests: omnitest(correctExpr = 'str(data)')
