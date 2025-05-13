@@ -4,7 +4,7 @@
 # To do that, we'll set our new variable NotSetosa equal to case_when().
 # Inside of case_when(), we will pass a small series of comparisons.
 # The first one we've done for you - when Species=="setosa" we want it equal to 0.
-# The next two you need to do - we want versicolor and viriginica to be equal to 1.
+# The next two you need to do - we want versicolor and virginica to be equal to 1.
 
 data_select2  <-
   data_select2  |>
