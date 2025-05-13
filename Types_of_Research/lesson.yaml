@@ -21,11 +21,38 @@
 
 #4
 - Class: text
-  Output: "Right!\n\nNaturalistic observation is when we simply observe out in the world what is happening. We can consider people like Jane Goddall and her studies on Chimpanzees. \n\nA case study method of research involves examining a single individual and studying them intently. We could consider many old-school therapists to do similar lines of research like this.\n\nThe more important three, in terms of this class, are Correlational and Experimental. We will explore each in turn."
+  Output: "Right!\n\nNaturalistic observation is when we simply observe out in the world what is happening. 
+  We can consider people like Jane Goddall and her studies on Chimpanzees. \n\nA"
+
+- Class: text
+  Output: "case study method of research involves examining a single individual and studying them intently. 
+  We could consider many old-school therapists to do similar lines of research like this."
+
+- Class: text
+  Output: "Right!\n\nNaturalistic observation is when we simply observe out in the world what is happening. 
+  We can consider people like Jane Goddall and her studies on Chimpanzees. \n\n The more important two, in 
+  terms of this class, are Correlational and Experimental. We will explore each in turn."
+  
+
+- Class: text
+  Output: "Correlational research examines  relationships between variables without manipulating them. 
+  Researchers measure variables as they naturally occur and analyze how they relate to each other. 
+  For example, studying whether there exists a relationship between hours spent on social media and reported
+  anxiety levels. While correlational studies can identify associations, they cannot establish 
+  causation."
+  
+- Class: text
+- Output: "\n\nExperimental research on the other hand, involves deliberately manipulating one variable 
+  (the independent variable) to observe its effect on another variable (the dependent variable). Researchers
+  randomly assign participants to different conditions and control for extraneous factors. For instance,
+  assigning participants to either use social media for 3 hours daily or avoid it entirely for a week,
+  then measuring their anxiety levels. This design allows researchers to make causal claims about the
+  relationship between variables.\n\nThese two approaches form the foundation for most statistical analyses 
+  we'll cover in this course."
 
 #5
 - Class: text
-  Output: "First, let's talk about correlational research. For instance, we might be interested in how father's height relates to son's height. "
+  Output: "First, let's dive into correlational research. For instance, we might be interested in how father's height relates to son's height. "
 
 #6
 - Class: figure
