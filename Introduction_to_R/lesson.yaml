@@ -105,9 +105,9 @@
   Output: |
     According to the `str()` output, how many **variables** does `data` contain?
   AnswerChoices: 3;4;5;6
-  CorrectAnswer: 5
-  AnswerTests: omnitest(correctVal = "5")
-  Hint: Look for the line that reads `150 obs. of  5 variables`.
+  CorrectAnswer: 6
+  AnswerTests: omnitest(correctVal = "6")
+  Hint: Look for the line that reads `150 obs. of  6 variables`.
 
 #17
 - Class: cmd_question
