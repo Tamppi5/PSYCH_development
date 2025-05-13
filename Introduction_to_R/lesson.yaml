@@ -37,7 +37,7 @@
 
 #5
 - Class: text
-  Output: "On the top right, click the arrow next to the word data. If you don't see this, click the Environment tab first. It should expand on the right side and list out five names."
+  Output: "On the top right, click the arrow next to the word data. If you don't see this, click the Environment tab first. It should expand on the right side and list out six names."
   
 #6
 - Class: mult_question
@@ -325,12 +325,6 @@
   AnswerChoices: View();str();mean();install.packages()
   CorrectAnswer: str()
   AnswerTests: omnitest(correctVal="str()")
-
-- Class: mult_question
-  Output: "Why do we write `psych::describe()` instead of just `describe()`?"
-  AnswerChoices: "To pick the function from the *psych* package;Because :: is faster;We must do it for base R"
-  CorrectAnswer: "To pick the function from the *psych* package"
-  AnswerTests: omnitest(correctVal="To pick the function from the *psych* package")
 
 - Class: text
   Output: "Nice job — you are ready for the next module!"
