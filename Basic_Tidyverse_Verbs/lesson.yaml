@@ -13,9 +13,6 @@
   AnswerTests: script_results_identical('saved')
   Hint: "Don't change anything, just type submit(). If you did and you don't know how to fix it, just type skip(), and you'll be all set."
   Script: Notes.R
-
-- Class: text
-  Output: It is recommended you take the Basics in R module first. 
   
 - Class: text
   Output: Throughout this course, we are going to what is called 'pipe' quite a bit, to the extent that sometimes, it may even be considered inefficient. That may be true - however, our goal is to ensure you are so comfortable with piping that it becomes second nature to you, and as such, we have chosen to overuse piping to impart this lesson throughout the modules.
