@@ -59,10 +59,10 @@
   Hint: Try psych::describeBy(data, group=data$Year) . You might have forgotten the comma that separates out arugments.
 
 - Class: cmd_question
-  Output: "What is the range for Incongruent for year 2014 in this data?"
-  CorrectAnswer: 383
-  AnswerTests: omnitest(correctVal='383')
-  Hint: Look at where it says group:Rejected, and look at the range there.
+  Output: "What is the range for Incongruent for year 2013 in this data?"
+  CorrectAnswer: 22.23
+  AnswerTests: omnitest(correctVal='22.23')
+  Hint: Look at where it says group:2013, and look at the range there.
 
 - Class: text
   Output: "One problem we're seeing (potentially) is there's a pretty wide range of admissions data. The range of rejection is between 8 and 391."
