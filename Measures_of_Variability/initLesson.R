@@ -12,47 +12,105 @@ plot.equation <- function(equation){
   plot(TeX(equation), cex=2)
 }
 
-# --- Robustly determine data_path ---
-lesson_dir <- NULL
-data_path <- NULL
-method_used <- "Unknown"
+# --- Finding the stroop.csv file ---
+# Current working directory is not where the file is, so we need to search for it
 
-# Method 1: Try to use the path of the currently executing script
-current_script_file_from_sys_frame <- NULL
-tryCatch({
-  # sys.frame(1)$ofile should give the path of the sourced file
-  # We need to ensure it's a valid character string before using it
-  sf_ofile <- sys.frame(1)$ofile
-  if (is.character(sf_ofile) && length(sf_ofile) == 1 && nzchar(sf_ofile)) {
-    current_script_file_from_sys_frame <- sf_ofile
+# Start with a function to find files recursively
+find_file <- function(filename, start_dir = getwd(), max_depth = 5) {
+  if (max_depth < 0) return(NULL)  # Stop if we've gone too deep
+  
+  # Check if file exists in current directory
+  current_path <- file.path(start_dir, filename)
+  if (file.exists(current_path)) {
+    return(current_path)
   }
-}, error = function(e) {
-  # In case sys.frame(1)$ofile itself errors or is not found
-  current_script_file_from_sys_frame <- NULL
-})
-
-if (!is.null(current_script_file_from_sys_frame)) {
-  lesson_dir <- dirname(current_script_file_from_sys_frame)
-  data_path <- file.path(lesson_dir, "stroop.csv")
-  method_used <- "sys.frame(1)$ofile"
-} else {
-  # Method 2: Fallback if sys.frame(1)$ofile is not available/valid.
-  # This relies on Swirl having set the working directory to the lesson's directory.
-  method_used <- "getwd()"
-  lesson_dir <- getwd() # For debugging, show what getwd() is
-  data_path <- "stroop.csv" # Attempt to load directly from current working directory
+  
+  # If not, check subdirectories
+  subdirs <- list.dirs(start_dir, recursive = FALSE)
+  for (dir in subdirs) {
+    found_path <- find_file(filename, dir, max_depth - 1)
+    if (!is.null(found_path)) {
+      return(found_path)
+    }
+  }
+  
+  # If we get here, file wasn't found
+  return(NULL)
 }
 
-# For debugging: print the paths and method used
-print(paste("Path determination method used:", method_used))
-print(paste("Current working directory reported by getwd():", getwd()))
-print(paste("Lesson directory determined as:", lesson_dir))
-print(paste("Attempting to load data from data_path:", data_path))
-print(paste("Does the target file exist at data_path? ", file.exists(data_path)))
+# First, try up to 3 directories above the current working directory
+found_path <- NULL
+current_dir <- getwd()
 
+# Check the current directory and its subdirectories
+print(paste("Searching for stroop.csv in:", current_dir))
+found_path <- find_file("stroop.csv", current_dir, max_depth = 3)
 
-# Load the stroop.csv dataset
-data <- read.csv(data_path)
+# If not found, try going up to parent directories and searching
+if (is.null(found_path)) {
+  for (i in 1:3) { # Try up to 3 levels up
+    parent_dir <- dirname(current_dir)
+    if (parent_dir == current_dir) break  # Break if we've reached the root
+    
+    current_dir <- parent_dir
+    print(paste("Searching for stroop.csv in:", current_dir))
+    found_path <- find_file("stroop.csv", current_dir, max_depth = 3)
+    
+    if (!is.null(found_path)) break  # Break if found
+  }
+}
+
+# If still not found, try an educated guess - look for a swirl courses directory
+if (is.null(found_path)) {
+  # Check if we can find a "swirl_courses" directory
+  swirl_path <- find_file("swirl_courses", getwd(), max_depth = 2)
+  if (!is.null(swirl_path)) {
+    # If we found a swirl_courses directory, look for our lesson in it
+    print(paste("Searching in possible swirl_courses directory:", swirl_path))
+    found_path <- find_file("stroop.csv", swirl_path, max_depth = 5)
+  }
+}
+
+print(paste("Search result for stroop.csv:", ifelse(is.null(found_path), "Not found", found_path)))
+
+# If found, use it; otherwise, fallback to trying in the current directory
+if (!is.null(found_path)) {
+  data_path <- found_path
+  print(paste("Found stroop.csv at:", data_path))
+} else {
+  # Last resort: Hardcoded alternative - try to construct full path to the course directory
+  # Look for a directory structure like ".../swirl_courses/PsychMetHCI/Measures_of_Variability"
+  possible_course_dir <- file.path(getwd(), "swirl_courses", "PsychMetHCI", "Measures_of_Variability", "stroop.csv")
+  
+  if (file.exists(possible_course_dir)) {
+    data_path <- possible_course_dir
+    print(paste("Using hardcoded fallback path:", data_path))
+  } else {
+    # Absolute last resort: Try directly in current directory
+    data_path <- "stroop.csv"
+    print(paste("WARNING: Could not find stroop.csv, trying in current directory as last resort:", data_path))
+  }
+}
+
+print(paste("Final data_path being used:", data_path))
+print(paste("Does the file exist at this path?", file.exists(data_path)))
+
+# Attempt to load the data (will error if file is not found)
+data <- tryCatch({
+  read.csv(data_path)
+}, error = function(e) {
+  # If loading fails, create a simulated dataset as a last resort
+  print("ERROR: Could not load stroop.csv. Creating simulated data to allow lesson to continue.")
+  print("This is NOT the real data! Please fix the file path issue for the next run.")
+  
+  # Create fake data that mimics the structure of stroop.csv
+  ppnr <- 1:131
+  congruent <- runif(131, 6, 32)  # Random values between 6-32
+  incongruent <- congruent + runif(131, 0, 15)  # Slightly higher than congruent
+  year <- sample(c(2013, 2014), 131, replace = TRUE)
+  
+  data.frame(PPNR = ppnr, Congruent = congruent, Incongruent = incongruent, Year = year)
+})
 
 # The UCBAdmissions data is no longer the primary 'data'
 # data <- data.frame(UCBAdmissions) # Commented out
