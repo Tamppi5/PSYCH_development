@@ -12,8 +12,14 @@ plot.equation <- function(equation){
   plot(TeX(equation), cex=2)
 }
 
-data <- data.frame(UCBAdmissions)
-calculate_me <- c(512, 89, 120, 53, 24)
+# Load the stroop.csv dataset
+# This will be the primary 'data' object for the lesson
+data <- read.csv("stroop.csv")
+
+# The UCBAdmissions data is no longer the primary 'data'
+# data <- data.frame(UCBAdmissions) # Commented out
+
+calculate_me <- c(512, 89, 120, 53, 24) # This seems to be a generic example vector
 
 set.seed(131)
 men <- c(rep("male", 50), rep("female", 50), rep("male", 50), rep("female", 50))
@@ -28,7 +34,8 @@ data_e <- data.frame(men, highsd, scores)
 example <- ggplot2::ggplot(data=data_e, aes(x=men, y=scores, group=highsd)) + 
   geom_point(position = "jitter") + 
   facet_grid(.~ highsd) 
+# The 'example' plot is a generic illustration of SD, so it can remain.
 
-rm(men, highsd, highsd_men, highsd_women, lowsd_men, lowsd_women, scores)
+rm(men, highsd, highsd_men, highsd_women, lowsd_men, lowsd_women, scores, data_e) # Added data_e to rm
 
 swirl_options(swirl_logging = FALSE)
