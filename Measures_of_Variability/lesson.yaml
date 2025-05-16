@@ -65,10 +65,10 @@
   Hint: Look at where it says group:2013, and look at the range there.
 
 - Class: text
-  Output: "One problem we're seeing (potentially) is there's a pretty wide range of admissions data. The range of rejection is between 8 and 391."
+  Output: "One problem we're seeing (potentially) is there's a pretty wide range of reaction times in the data. The range of reaction times for is between 6.64 and 31.67."
   
 - Class: text
-  Output: "Range by itself cannot tell if there are outliers or not. Imagine our data is actually 8 rejected in Dept A, B, C, D, and E, but 383 rejected in Dept F. Range doesn't tell us what's going on."
+  Output: "Range by itself cannot tell if there are outliers or not. Imagine our data is actually 8 reaction times under 10 seconds and 8 reaction times over 20 seconds, but 113 reaction times between 10 and 20 seconds. Range doesn't tell use what's going on."
 
 - Class: text
   Output: We have similar issues when it comes to the Interquartile Range. 
@@ -80,22 +80,22 @@
   Output: "This may be better, in some ways, because we are ignoring the outliers below the 25th quartile and above the 75th quartile."
 
 - Class: cmd_question
-  Output: Using the stats package, call the quantile() function and pass it one argument, data$Freq.
-  CorrectAnswer: stats::quantile(data$Freq)
-  AnswerTests: omnitest(correctExpr='stats::quantile(data$Freq)')
+  Output: Using the stats package, call the quantile() function and pass it one argument, data$Congruent.
+  CorrectAnswer: stats::quantile(data$Congruent)
+  AnswerTests: omnitest(correctExpr='stats::quantile(data$Congruent)')
   Hint: packagename::functionname(argument)
 
 #20
 - Class: cmd_question
   Output: Now, I just told you that the Interquartile Range was the distance between the 75th and 25th percentile. Do the subtraction now to solve for the Interquartile Range.
-  CorrectAnswer: 222.5
-  AnswerTests: omnitest(correctVal=222.5)
+  CorrectAnswer: 4.8865
+  AnswerTests: omnitest(correctVal=4.8865)
 
 - Class: cmd_question
-  Output: There's also a function to do this for us. Call the stats package, the function IQR(), and the one argument, data$Freq.
-  CorrectAnswer: stats::IQR(data$Freq)
-  AnswerTests: omnitest(correctExpr='stats::IQR(data$Freq)')
-  Hint: stats::IQR(data$Freq)
+  Output: There's also a function to do this for us. Call the stats package, the function IQR(), and the one argument, data$Congruent.
+  CorrectAnswer: stats::IQR(data$Congruent)
+  AnswerTests: omnitest(correctExpr='stats::IQR(data$Congruent)')
+  Hint: stats::IQR(data$Congruent)
 
 - Class: text 
   Output: "The IQR has the same general problem as range. It just outputs one number based on two separate numbers, whether this is the 0th and 100th percentile or the 25th and 75th. "
