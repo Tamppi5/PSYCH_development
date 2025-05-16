@@ -3,7 +3,7 @@
 #formula <- imager::load.image("https://static1.squarespace.com/static/5a1855c81f318d6ebcce6e54/5af4702e88251b5dfff59172/5af4707e1ae6cf37588f6dac/1525970376649/variance.png?format=1000w")
 #formula2 <- imager::load.image("https://static1.squarespace.com/static/5a1855c81f318d6ebcce6e54/5af4702e88251b5dfff59172/5af4707e6d2a7325bf575418/1525970376650/standarddeviation.png?format=1000w")
 
-stroop <- read.csv("./stroop.csv")
+stroop <- read.csv("stroop.csv")
 
 
 standdev <- "s^2 = $\\frac{\\sum{}{}(X_i-\\bar{x})^2}{n-1}$ so s= $\\sqrt{\\frac{\\sum{}{}(X_i-\\bar{x})^2}{n-1}}$"
