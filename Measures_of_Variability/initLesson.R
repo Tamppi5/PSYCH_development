@@ -12,9 +12,18 @@ plot.equation <- function(equation){
   plot(TeX(equation), cex=2)
 }
 
+# Determine the path to stroop.csv relative to this script
+# This makes the loading more robust to working directory issues.
+lesson_dir <- dirname(sys.frame(1)$ofile) # Gets the directory of the current script (initLesson.R)
+data_path <- file.path(lesson_dir, "stroop.csv")
+
+# For debugging: print the paths (remove these lines once it's working)
+print(paste("Current working directory in initLesson.R:", getwd()))
+print(paste("Attempting to load data from:", data_path))
+
 # Load the stroop.csv dataset
 # This will be the primary 'data' object for the lesson
-data <- read.csv("stroop.csv")
+data <- read.csv(data_path)
 
 # The UCBAdmissions data is no longer the primary 'data'
 # data <- data.frame(UCBAdmissions) # Commented out
