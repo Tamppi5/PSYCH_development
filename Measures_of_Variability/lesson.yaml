@@ -31,7 +31,7 @@
   Hint: "Don't forget to capitalize View()."
 
 - Class: text
-  Output: Great. So we see that there was 4 variables. The first was whether or not they were admitted, the second was gender, the third was an anonymized department number, and the last was a continuous variable counting out how many of each group there were.
+  Output: Great. So we see that there was 4 variables. The first is the participant number, the second reaction time for Congruent words, the third reaction time for Incongruent words, and the last is the year the data was recorded.
   
 - Class: cmd_question
   Output: "So, let's look at the descriptive statistics for this dataset. We're going to tell R we want to use the psych package, call the describeBy() function, and pass it one argument, data. Do that now."
@@ -41,16 +41,16 @@
 
 #10
 - Class: mult_question
-  Output: "Okay! So, looking at this information, we see a lot of information. What is the range for Freq?"
-  AnswerChoices: 512;504;188.58;24;8;520
-  CorrectAnswer: 504
-  AnswerTests: omnitest(correctVal='504')
+  Output: "Okay! So, looking at this information, we see a lot of information. What is the range for Congruent?"
+  AnswerChoices: 25.03;504;188.58;24;8;520
+  CorrectAnswer: 25.03
+  AnswerTests: omnitest(correctVal='25.03')
 
 - Class: mult_question
   Output: "Great! And what's the minimum and maximum values that were used to calculate this range?"
-  AnswerChoices: 8 and 512; 1 and 2; 179.9 and 182.36; 188.58 and 140.06
-  CorrectAnswer: 8 and 512
-  AnswerTests: omnitest(correctVal='8 and 512')
+  AnswerChoices: 8 and 504; 1 and 2; 179.9 and 182.36; 6.64 and 31.67
+  CorrectAnswer: 6.64 and 31.67
+  AnswerTests: omnitest(correctVal='6.64 and 31.67')
 
 - Class: cmd_question
   Output: "We can expand this a little bit. Press the up arrow to get back psych::describeBy(data), and add a second argument, group=data$Admit."
