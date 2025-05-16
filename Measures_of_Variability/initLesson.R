@@ -12,110 +12,16 @@ plot.equation <- function(equation){
   plot(TeX(equation), cex=2)
 }
 
-# --- Finding the stroop.csv file ---
-# Current working directory is not where the file is, so we need to search for it
+#CREATE DATASET.
+PPNR <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131)
+Congruent <- c(21.871, 22.82, 14.81, 10.142, 14.414, 19.803, 9.881, 15.939, 9.457, 8.23, 21.49, 16.3, 14.7, 11.6, 16.765, 12.89, 12.081, 17.439, 15.666, 18.399, 17.063, 16.096, 10.628, 14.381, 13.785, 11.038, 15.315, 17.739, 24.825, 20.065, 13.137, 13.552, 13.121, 12.324, 6.636, 15.469, 15.967, 14.543, 16.332, 15.347, 14.984, 15.809, 14.106, 19.774, 13.2, 13.701, 15.274, 14.743, 8.032, 11.931, 20.664, 13.26, 23.417, 13.146, 10.031, 16.941, 10.843, 11.631, 9.128, 10.87, 16.601, 12.657, 7.525, 23.919, 10.375, 13.743, 17.405, 10.442, 8.9, 13.7, 13.671, 12.598, 14.908, 19.352, 19.359, 19.997, 20.237, 16.648, 14.412, 31.669, 14.286, 12.11, 13.619, 13.741, 14.788, 16.819, 11.888, 10.516, 9.436, 13.256, 18.643, 15.827, 13.0, 17.6, 19.065, 16.387, 19.765, 10.281, 16.702, 17.465, 19.04, 22.678, 15.767, 14.445, 16.888, 10.034, 10.091, 16.46, 15.721, 10.9, 17.196, 21.392, 17.725, 23.204, 15.926, 16.618, 14.85, 13.003, 15.247, 9.396, 11.998, 15.615, 22.891, 10.825, 14.69, 21.0, 18.363, 9.733, 14.563, 12.162, 13.076)
+Incongruent <- c(21.974, 25.116, 18.5, 20.786, 22.097, 23.402, 22.212, 24.833, 11.374, 17.616, 29.729, 21.3, 27.704, 28.5, 25.133, 21.077, 20.331, 22.71, 24.837, 29.679, 21.878, 22.528, 15.449, 22.821, 24.727, 33.6, 22.254, 22.917, 17.259, 23.97, 20.761, 28.738, 28.694, 22.832, 17.598, 32.099, 19.289, 19.697, 17.231, 17.871, 32.352, 16.13, 22.661, 23.533, 16.5, 28.526, 17.935, 27.036, 25.59, 17.201, 33.328, 18.41, 25.966, 28.276, 24.467, 19.983, 20.492, 28.823, 27.731, 20.802, 26.202, 23.506, 17.075, 24.615, 14.871, 17.68, 22.651, 21.725, 19.034, 18.7, 19.681, 29.429, 21.464, 25.129, 28.297, 26.881, 24.007, 16.238, 15.064, 26.643, 18.714, 23.431, 18.83, 22.715, 25.916, 25.677, 21.213, 22.556, 20.715, 26.072, 35.135, 32.161, 25.0, 17.513, 28.724, 19.028, 33.259, 25.849, 20.62, 21.981, 29.129, 28.249, 26.069, 16.273, 28.54, 24.069, 17.241, 24.18, 22.622, 18.1, 20.492, 26.789, 28.75, 31.584, 26.59, 17.744, 24.8, 19.204, 20.389, 21.525, 18.776, 20.585, 28.302, 16.13, 21.712, 22.0, 26.899, 10.396, 24.382, 19.769, 21.463)
+Year <- c(2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014)
 
-# Start with a function to find files recursively
-find_file <- function(filename, start_dir = getwd(), max_depth = 5) {
-  if (max_depth < 0) return(NULL)  # Stop if we've gone too deep
-  
-  # Check if file exists in current directory
-  current_path <- file.path(start_dir, filename)
-  if (file.exists(current_path)) {
-    return(current_path)
-  }
-  
-  # If not, check subdirectories
-  subdirs <- list.dirs(start_dir, recursive = FALSE)
-  for (dir in subdirs) {
-    found_path <- find_file(filename, dir, max_depth - 1)
-    if (!is.null(found_path)) {
-      return(found_path)
-    }
-  }
-  
-  # If we get here, file wasn't found
-  return(NULL)
-}
+stroop <- data.frame(PPNR, Congruent, Incongruent, Year)
 
-# First, try up to 3 directories above the current working directory
-found_path <- NULL
-current_dir <- getwd()
-
-# Check the current directory and its subdirectories
-print(paste("Searching for stroop.csv in:", current_dir))
-found_path <- find_file("stroop.csv", current_dir, max_depth = 3)
-
-# If not found, try going up to parent directories and searching
-if (is.null(found_path)) {
-  for (i in 1:3) { # Try up to 3 levels up
-    parent_dir <- dirname(current_dir)
-    if (parent_dir == current_dir) break  # Break if we've reached the root
-    
-    current_dir <- parent_dir
-    print(paste("Searching for stroop.csv in:", current_dir))
-    found_path <- find_file("stroop.csv", current_dir, max_depth = 3)
-    
-    if (!is.null(found_path)) break  # Break if found
-  }
-}
-
-# If still not found, try an educated guess - look for a swirl courses directory
-if (is.null(found_path)) {
-  # Check if we can find a "swirl_courses" directory
-  swirl_path <- find_file("swirl_courses", getwd(), max_depth = 2)
-  if (!is.null(swirl_path)) {
-    # If we found a swirl_courses directory, look for our lesson in it
-    print(paste("Searching in possible swirl_courses directory:", swirl_path))
-    found_path <- find_file("stroop.csv", swirl_path, max_depth = 5)
-  }
-}
-
-print(paste("Search result for stroop.csv:", ifelse(is.null(found_path), "Not found", found_path)))
-
-# If found, use it; otherwise, fallback to trying in the current directory
-if (!is.null(found_path)) {
-  data_path <- found_path
-  print(paste("Found stroop.csv at:", data_path))
-} else {
-  # Last resort: Hardcoded alternative - try to construct full path to the course directory
-  # Look for a directory structure like ".../swirl_courses/PsychMetHCI/Measures_of_Variability"
-  possible_course_dir <- file.path(getwd(), "swirl_courses", "PsychMetHCI", "Measures_of_Variability", "stroop.csv")
-  
-  if (file.exists(possible_course_dir)) {
-    data_path <- possible_course_dir
-    print(paste("Using hardcoded fallback path:", data_path))
-  } else {
-    # Absolute last resort: Try directly in current directory
-    data_path <- "stroop.csv"
-    print(paste("WARNING: Could not find stroop.csv, trying in current directory as last resort:", data_path))
-  }
-}
-
-print(paste("Final data_path being used:", data_path))
-print(paste("Does the file exist at this path?", file.exists(data_path)))
-
-# Attempt to load the data (will error if file is not found)
-data <- tryCatch({
-  read.csv(data_path)
-}, error = function(e) {
-  # If loading fails, create a simulated dataset as a last resort
-  print("ERROR: Could not load stroop.csv. Creating simulated data to allow lesson to continue.")
-  print("This is NOT the real data! Please fix the file path issue for the next run.")
-  
-  # Create fake data that mimics the structure of stroop.csv
-  ppnr <- 1:131
-  congruent <- runif(131, 6, 32)  # Random values between 6-32
-  incongruent <- congruent + runif(131, 0, 15)  # Slightly higher than congruent
-  year <- sample(c(2013, 2014), 131, replace = TRUE)
-  
-  data.frame(PPNR = ppnr, Congruent = congruent, Incongruent = incongruent, Year = year)
-})
-
-# The UCBAdmissions data is no longer the primary 'data'
-# data <- data.frame(UCBAdmissions) # Commented out
-
-calculate_me <- c(512, 89, 120, 53, 24) # This seems to be a generic example vector
+data <- data.frame(stroop)
+calculate_me <- c(512, 89, 120, 53, 24)
 
 set.seed(131)
 men <- c(rep("male", 50), rep("female", 50), rep("male", 50), rep("female", 50))
@@ -130,8 +36,7 @@ data_e <- data.frame(men, highsd, scores)
 example <- ggplot2::ggplot(data=data_e, aes(x=men, y=scores, group=highsd)) + 
   geom_point(position = "jitter") + 
   facet_grid(.~ highsd) 
-# The 'example' plot is a generic illustration of SD, so it can remain.
 
-rm(men, highsd, highsd_men, highsd_women, lowsd_men, lowsd_women, scores, data_e) # Added data_e to rm
+rm(men, highsd, highsd_men, highsd_women, lowsd_men, lowsd_women, scores)
 
 swirl_options(swirl_logging = FALSE)
