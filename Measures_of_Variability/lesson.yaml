@@ -22,7 +22,7 @@
   Output: "The first one is range. Range is the distance between the smallest value and the largest value." 
 
 - Class: text
-  Output: Today we have loaded a dataset from R itself. It is a dataset on graduate student applications to UC Berkeley in 1973. 
+  Output: Today we have loaded a dataset on something called the Stroop Effect. The Stroop Effect is a phenomenon in which the reaction time of a person is slower when the word is printed in a color that is different from the color of the word. 
   
 - Class: cmd_question
   Output: "Let's take a look at the data here with the function View(), and one argument, data."
