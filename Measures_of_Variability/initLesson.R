@@ -12,17 +12,46 @@ plot.equation <- function(equation){
   plot(TeX(equation), cex=2)
 }
 
-# Determine the path to stroop.csv relative to this script
-# This makes the loading more robust to working directory issues.
-lesson_dir <- dirname(sys.frame(1)$ofile) # Gets the directory of the current script (initLesson.R)
-data_path <- file.path(lesson_dir, "stroop.csv")
+# --- Robustly determine data_path ---
+lesson_dir <- NULL
+data_path <- NULL
+method_used <- "Unknown"
 
-# For debugging: print the paths (remove these lines once it's working)
-print(paste("Current working directory in initLesson.R:", getwd()))
-print(paste("Attempting to load data from:", data_path))
+# Method 1: Try to use the path of the currently executing script
+current_script_file_from_sys_frame <- NULL
+tryCatch({
+  # sys.frame(1)$ofile should give the path of the sourced file
+  # We need to ensure it's a valid character string before using it
+  sf_ofile <- sys.frame(1)$ofile
+  if (is.character(sf_ofile) && length(sf_ofile) == 1 && nzchar(sf_ofile)) {
+    current_script_file_from_sys_frame <- sf_ofile
+  }
+}, error = function(e) {
+  # In case sys.frame(1)$ofile itself errors or is not found
+  current_script_file_from_sys_frame <- NULL
+})
+
+if (!is.null(current_script_file_from_sys_frame)) {
+  lesson_dir <- dirname(current_script_file_from_sys_frame)
+  data_path <- file.path(lesson_dir, "stroop.csv")
+  method_used <- "sys.frame(1)$ofile"
+} else {
+  # Method 2: Fallback if sys.frame(1)$ofile is not available/valid.
+  # This relies on Swirl having set the working directory to the lesson's directory.
+  method_used <- "getwd()"
+  lesson_dir <- getwd() # For debugging, show what getwd() is
+  data_path <- "stroop.csv" # Attempt to load directly from current working directory
+}
+
+# For debugging: print the paths and method used
+print(paste("Path determination method used:", method_used))
+print(paste("Current working directory reported by getwd():", getwd()))
+print(paste("Lesson directory determined as:", lesson_dir))
+print(paste("Attempting to load data from data_path:", data_path))
+print(paste("Does the target file exist at data_path? ", file.exists(data_path)))
+
 
 # Load the stroop.csv dataset
-# This will be the primary 'data' object for the lesson
 data <- read.csv(data_path)
 
 # The UCBAdmissions data is no longer the primary 'data'
