@@ -53,13 +53,13 @@
   AnswerTests: omnitest(correctVal='6.64 and 31.67')
 
 - Class: cmd_question
-  Output: "We can expand this a little bit. Press the up arrow to get back psych::describeBy(data), and add a second argument, group=data$Admit."
-  CorrectAnswer: psych::describeBy(data, group=data$Admit)
-  AnswerTests: omnitest(correctExpr='psych::describeBy(data, group=data$Admit)')
-  Hint: Try psych::describeBy(data, group=data$Admit) . You might have forgotten the comma that separates out arugments.
+  Output: "We can expand this a little bit. Press the up arrow to get back psych::describeBy(data), and add a second argument, group=data$Year."
+  CorrectAnswer: psych::describeBy(data, group=data$Year)
+  AnswerTests: omnitest(correctExpr='psych::describeBy(data, group=data$Year)')
+  Hint: Try psych::describeBy(data, group=data$Year) . You might have forgotten the comma that separates out arugments.
 
 - Class: cmd_question
-  Output: "What is the range for rejected Freq in this data? Type it in now."
+  Output: "What is the range for Incongruent for year 2014 in this data?"
   CorrectAnswer: 383
   AnswerTests: omnitest(correctVal='383')
   Hint: Look at where it says group:Rejected, and look at the range there.
