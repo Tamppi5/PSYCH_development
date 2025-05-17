@@ -68,7 +68,7 @@
   Output: "One problem we're seeing (potentially) is there's a pretty wide range of reaction times in the data. The range of reaction times for is between 6.64 and 31.67."
   
 - Class: text
-  Output: "Range by itself cannot tell if there are outliers or not. Imagine our data is actually 8 reaction times under 10 seconds and 8 reaction times over 20 seconds, but 113 reaction times between 10 and 20 seconds. Range doesn't tell use what's going on."
+  Output: "Range by itself cannot tell if there are outliers or not. Imagine our Congruent data is actually 8 reaction times under 10 seconds and 10 reaction times over 20 seconds, but 113 reaction times between 10 and 20 seconds. Range doesn't tell use what's going on."
 
 - Class: text
   Output: We have similar issues when it comes to the Interquartile Range. 
@@ -87,9 +87,10 @@
 
 #20
 - Class: cmd_question
-  Output: Now, I just told you that the Interquartile Range was the distance between the 75th and 25th percentile. Do the subtraction now to solve for the Interquartile Range.
-  CorrectAnswer: 4.8865
-  AnswerTests: omnitest(correctVal=4.8865)
+  Output: Now, I just told you that the Interquartile Range was the distance between the 75th and 25th percentile. Do the subtraction now to solve for the Interquartile Range to two decimal places.
+  CorrectAnswer: 4.89
+  AnswerTests: omnitest(correctVal=4.89)
+  Hint: 17.13 - 12.24
 
 - Class: cmd_question
   Output: There's also a function to do this for us. Call the stats package, the function IQR(), and the one argument, data$Congruent.
