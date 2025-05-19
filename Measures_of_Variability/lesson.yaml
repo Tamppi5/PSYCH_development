@@ -22,10 +22,10 @@
   Output: "The first one is range. Range is the distance between the smallest value and the largest value." 
 
 - Class: text
-  Output: Let's take a look at something called the Stroop Effect. The Stroop Effect is a phenomenon in which the reaction time of a person is slower for incongruent stimuli.  It was first discovered by John Ridley Stroop in 1935.
+  Output: Let's take a look at something called the Stroop Effect. The Stroop Effect is a phenomenon in which the reaction time of a person is slower for incongruent stimuli. It was first discovered by John Ridley Stroop in 1935.
   
 - Class: text
-  Output: A typical example is when there is an incongruent mismatch between the word for a color (e.g., blue, green, or red) and the font color it is printed in (e.g., the word red printed in a blue font). We have loaded a dataset on the Stroop experiment, which contains the reaction times for congruent and incongruent stimuli.
+  Output: A typical example is when there is an incongruent mismatch between the word for a color (e.g., blue, green, or red) and the font color it is printed in (e.g., the word red printed in a blue font). We have loaded a dataset on the Stroop experiment (source:https://github.com/Lakens/Stroop), which contains the reaction times for congruent and incongruent stimuli.
   
 - Class: cmd_question
   Output: "Let's take a look at the data here with the function View(), and one argument, data."
