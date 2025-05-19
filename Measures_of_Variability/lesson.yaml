@@ -157,7 +157,7 @@
   Output: "We're going to calculate a sample's standard deviation now. "
   
 - Class: cmd_question
-  Output: "I've taken a sample of the frequency data - and saved it under calculate_me. Type calculate_me now to see what values we're working with. "
+  Output: "We've taken a sample of frequency data - and saved it under calculate_me. Type calculate_me now to see what values we're working with. "
   CorrectAnswer: calculate_me
   AnswerTests: omnitest(correctExpr='calculate_me')
   Hint: calculate_me
