@@ -1,4 +1,5 @@
 # One Sample T-Tests
+library(base64enc)
 
 script_results_identical <- function(result_name) {
   e <- get('e', parent.frame())

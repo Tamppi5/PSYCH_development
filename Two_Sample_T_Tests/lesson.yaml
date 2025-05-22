@@ -101,7 +101,7 @@
 - Class: cmd_question
   Output: To get their effect size, we need to use a new function, and we will pipe (|>) our data (df) into it.  In the lsr library, there is a function called cohensD(). It takes at least two inputs- the formula (Intellect_Rating ~ Condition) and the data (for us, because we are piping, remember data=_). Let's try just those two inputs now.
   CorrectAnswer: df |> cohensD(Intellect_Rating~Condition, data=_)
-  AnswerTests: omnitest(correctExpr='df |> cohensD(Intellect_Rating~Condition, data=_)')
+  AnswerTests: any_of_exprs('df |> cohensD(Intellect_Rating~Condition, data=_)', 'df |> lsr::cohensD(Intellect_Rating~Condition, data=_)')
   Hint: df |> cohensD(Intellect_Rating~Condition, data=_)
 
 - Class: cmd_question
