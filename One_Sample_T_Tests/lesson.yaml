@@ -116,7 +116,7 @@
   Output: "They write - A Wilcoxon signed rank test showed that the average c (M = .11, SE = .04) also was significantly higher than zero (W = 4044.5, p = .018)."
 
 - Class: text
-  Output:  Let's first practice our one sample Wilcoxon sign-ranked test. Since there is no predictor, we need to tell R that we are passing what is known as a null model - there are no predictors. We want to see if C is greater than zero.
+  Output: Let's first practice our one sample Wilcoxon sign-ranked test. Since there is no predictor, we need to tell R that we are passing what is known as a null model - there are no predictors. We want to see if C is greater than zero.
   
 - Class: cmd_question
   Output: To do that, take our dataset, violence, and pipe (|>) into the wilcox_test() function from the rstatix library, passing two arguments - C ~ 1 and mu=0. (mu=0 is the default, but it's good practice to know what we're doing).
