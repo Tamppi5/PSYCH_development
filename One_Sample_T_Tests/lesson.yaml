@@ -49,7 +49,7 @@
 - Class: cmd_question
   Output: We have a function cohens_d() from the rstatix package to get those results. We will pipe (|>) our dataset (purchases) into cohens_d() with three arguments - MPEP_self ~ 1 (just like our t.test), mu=5 (again, the same), and ci=TRUE. Our notes give a list of other ways to code this, as well as other packages.
   CorrectAnswer: purchases |>  cohens_d(MPEP_self ~ 1, mu=5, ci=TRUE)
-  AnswerTests: omnitest(correctExpr='purchases |>  cohens_d(MPEP_self ~ 1, mu=5, ci=TRUE)')
+  AnswerTests: any_of_exprs('purchases |>  cohens_d(MPEP_self ~ 1, mu=5, ci=TRUE)', 'purchases |>  rstatix::cohens_d(MPEP_self ~ 1, mu=5, ci=TRUE)')
   Hint: purchases |>  cohens_d(MPEP_self ~ 1, mu=5, ci=TRUE)
 
 - Class: text
