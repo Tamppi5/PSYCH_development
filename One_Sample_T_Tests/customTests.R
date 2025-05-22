@@ -17,19 +17,19 @@ script_results_identical <- function(result_name) {
       source(student_script_path, local = student_env, chdir = TRUE, encoding = "UTF-8")
     }, error = function(cond) {
       student_script_error <<- TRUE
-      message(paste("DEBUG: Error sourcing student script:", cond$message))
+      #message(paste("DEBUG: Error sourcing student script:", cond$message))
     })
   )
 
   # 1. Check if student's script had a sourcing error
   if (student_script_error) {
-    message("DEBUG: Student script had a sourcing error.")
+    #message("DEBUG: Student script had a sourcing error.")
     return(FALSE)
   }
 
   # 2. Check if the student's script produced the expected result object in its environment
   if (!exists(result_name, envir = student_env)) {
-    message(paste("DEBUG: Result '", result_name, "' not found in student_env.", sep=""))
+    #message(paste("DEBUG: Result '", result_name, "' not found in student_env.", sep=""))
     return(FALSE)
   }
   user_res <- get(result_name, envir = student_env)
@@ -38,7 +38,7 @@ script_results_identical <- function(result_name) {
   # Ensure e$correct_script_temp_path is valid (Swirl should provide this)
   if (is.null(e$correct_script_temp_path) || !file.exists(e$correct_script_temp_path)) {
     # This would be an authoring or Swirl setup issue.
-    message("DEBUG: e$correct_script_temp_path is invalid or file does not exist.")
+    #message("DEBUG: e$correct_script_temp_path is invalid or file does not exist.")
     return(FALSE) 
   }
   correct_script_path <- e$correct_script_temp_path
@@ -52,13 +52,13 @@ script_results_identical <- function(result_name) {
       source(correct_script_path, local = tempenv_correct, chdir = TRUE, encoding = "UTF-8")
     }, error = function(cond) {
       correct_script_had_error <<- TRUE
-      message(paste("DEBUG: Error sourcing correct script:", cond$message))
+      #message(paste("DEBUG: Error sourcing correct script:", cond$message))
     })
   )
 
   # 3. Check if the correct script ran successfully and produced the result object
   if (correct_script_had_error || !exists(result_name, envir = tempenv_correct)) {
-    message("DEBUG: Correct script failed or didn't produce result.")
+    #message("DEBUG: Correct script failed or didn't produce result.")
     return(FALSE)
   }
   correct_res <- get(result_name, envir = tempenv_correct)
@@ -66,11 +66,11 @@ script_results_identical <- function(result_name) {
   # 4. Compare the student's result (from student_env) with the correct result
   are_identical <- identical(user_res, correct_res)
   # For author debugging:
-   if (!are_identical) {
-     message("DEBUG: Student result and correct result are not identical.")
-     message("DEBUG: Student result: "); print(str(user_res))
-     message("DEBUG: Correct result: "); print(str(correct_res))
-   }
+   #if (!are_identical) {
+     #message("DEBUG: Student result and correct result are not identical.")
+     #message("DEBUG: Student result: "); print(str(user_res))
+     #message("DEBUG: Correct result: "); print(str(correct_res))
+   #}
   return(are_identical)
 }
 
