@@ -1,53 +1,77 @@
 # One Sample T-Tests
 
 script_results_identical <- function(result_name) {
-  # Get e (Swirl's environment)
   e <- get('e', parent.frame())
 
-  # 1. Check if Swirl detected an error during the sourcing of the student's script
-  #    e$expr_error is typically set to TRUE by Swirl if an error occurred.
-  if (!is.null(e$expr_error) && e$expr_error) {
-    return(FALSE) # Student's script had a sourcing error, so fail the test.
-  }
-
-  # 2. Check if the student's script produced the expected result object in the global environment
-  if (!exists(result_name, globalenv())) {
-    # Student's script ran (or Swirl didn't flag a fatal error) but didn't create the object.
-    return(FALSE)
-  }
-  user_res <- get(result_name, globalenv())
-
-  # 3. Source the correct script in a temporary environment and get its result
-  tempenv <- new.env()
-  correct_script_had_error <- FALSE # Flag to track errors in the correct script
-
-  # Capture output from sourcing the correct script to keep the console clean
+  # --- Evaluate student's script ---
+  student_script_path <- e$script_temp_path
+  # Create a new environment for the student's script, inheriting from globalenv
+  # so it can access data like 'violence' if needed.
+  student_env <- new.env(parent = globalenv())
+  student_script_error <- FALSE
+  
+  # Capture console output during sourcing to keep things clean
   capture.output(
-    local(
-      tryCatch({
-        # source the correct script
-        source(e$correct_script_temp_path, local = TRUE, chdir = TRUE) # chdir=TRUE is good practice
-      }, error = function(cond) {
-        # An error occurred while sourcing the correct script. This is an authoring issue.
-        correct_script_had_error <<- TRUE
-        # For author debugging: message(paste("Error in correct script:", cond$message))
-      }),
-      envir = tempenv
-    )
+    tryCatch({
+      # Source student's script in its own environment
+      source(student_script_path, local = student_env, chdir = TRUE, encoding = "UTF-8")
+    }, error = function(cond) {
+      student_script_error <<- TRUE
+      message(paste("DEBUG: Error sourcing student script:", cond$message))
+    })
   )
 
-  # 4. Check if the correct script ran successfully and produced the result object
-  if (correct_script_had_error || !exists(result_name, tempenv)) {
-    # If the correct script is faulty, we can't validate the student's answer.
-    # For safety, treat this as a failure for the student's current attempt.
-    # This also helps identify authoring errors.
-    # For author debugging: message("Correct script failed to produce the expected result.")
+  # 1. Check if student's script had a sourcing error
+  if (student_script_error) {
+    message("DEBUG: Student script had a sourcing error.")
     return(FALSE)
   }
-  correct_res <- get(result_name, tempenv)
 
-  # 5. Compare the student's result with the correct result
-  return(identical(user_res, correct_res))
+  # 2. Check if the student's script produced the expected result object in its environment
+  if (!exists(result_name, envir = student_env)) {
+    message(paste("DEBUG: Result '", result_name, "' not found in student_env.", sep=""))
+    return(FALSE)
+  }
+  user_res <- get(result_name, envir = student_env)
+
+  # --- Evaluate correct script ---
+  # Ensure e$correct_script_temp_path is valid (Swirl should provide this)
+  if (is.null(e$correct_script_temp_path) || !file.exists(e$correct_script_temp_path)) {
+    # This would be an authoring or Swirl setup issue.
+    message("DEBUG: e$correct_script_temp_path is invalid or file does not exist.")
+    return(FALSE) 
+  }
+  correct_script_path <- e$correct_script_temp_path
+  
+  # Create a new environment for the correct script
+  tempenv_correct <- new.env(parent = globalenv())
+  correct_script_had_error <- FALSE
+
+  capture.output(
+    tryCatch({
+      source(correct_script_path, local = tempenv_correct, chdir = TRUE, encoding = "UTF-8")
+    }, error = function(cond) {
+      correct_script_had_error <<- TRUE
+      message(paste("DEBUG: Error sourcing correct script:", cond$message))
+    })
+  )
+
+  # 3. Check if the correct script ran successfully and produced the result object
+  if (correct_script_had_error || !exists(result_name, envir = tempenv_correct)) {
+    message("DEBUG: Correct script failed or didn't produce result.")
+    return(FALSE)
+  }
+  correct_res <- get(result_name, envir = tempenv_correct)
+
+  # 4. Compare the student's result (from student_env) with the correct result
+  are_identical <- identical(user_res, correct_res)
+  # For author debugging:
+   if (!are_identical) {
+     message("DEBUG: Student result and correct result are not identical.")
+     message("DEBUG: Student result: "); print(str(user_res))
+     message("DEBUG: Correct result: "); print(str(correct_res))
+   }
+  return(are_identical)
 }
 
 
