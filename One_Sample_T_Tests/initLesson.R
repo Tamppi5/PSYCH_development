@@ -1,4 +1,5 @@
 swirl_options(swirl_logging = FALSE)
+library(dplyr)
 purchases <- structure(list(MPEP_self = structure(c(7, 9, 9, 6, 7, 3, 9, 9, 
                                                     9, 8, 5, 8, 9, 9, 7, 7, 8, 9, 9, 5, 5, 3, 6, 7, 5, 8, 5, 7, 9, 
                                                     5, 7, 7, 1, 9, 6, 5, 9, 7, 8, 6, 7, 4, 7, 8, 7, 5, 2, 7, 7, 8, 

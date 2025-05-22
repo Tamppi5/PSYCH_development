@@ -103,8 +103,8 @@
 - Class: cmd_question
   Output: The function for Shapiro-Wilk is shapiro_test() in the rstatix package. Let's practice our piping technique, so take violence and |> pipe it into shapiro_test(), passing the single argument C .
   CorrectAnswer: violence |> shapiro_test(C)
-  AnswerTests: omnitest(correctExpr='violence |> shapiro_test(C)')
-  Hint: violence |> shapiro_test(C)
+  AnswerTests: any_of_exprs('violence |> shapiro_test(C)', 'violence |> rstatix::shapiro_test(C)')
+  Hint: violence |> shapiro_test(C) or violence |> rstatix::shapiro_test(C)
 
 - Class: text
   Output: The null hypothesis is that there is no difference between the distribution of the variable and the normal distribution. If we find sufficient evidence to reject that null hypothesis (conventionally, at an alpha of .05), then we reject the hypothesis that there is no difference between the distribution of the variable and the normal distribution.
@@ -121,7 +121,7 @@
 - Class: cmd_question
   Output: To do that, take our dataset, violence, and pipe (|>) into the wilcox_test() function from the rstatix library, passing two arguments - C ~ 1 and mu=0. (mu=0 is the default, but it's good practice to know what we're doing).
   CorrectAnswer: violence |> wilcox_test(C ~ 1, mu=0)
-  AnswerTests: omnitest(correctExpr='violence |> wilcox_test(C ~ 1, mu=0)')
+  AnswerTests: any_of_exprs('violence |> wilcox_test(C ~ 1, mu=0)', 'violence |> rstatix::wilcox_test(C ~ 1, mu=0)')
   Hint: violence |> wilcox_test(C ~ 1, mu=0)
 
 - Class: script

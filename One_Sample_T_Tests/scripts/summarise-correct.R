@@ -6,4 +6,4 @@ sum_violence <-
     N = sum(!is.na(C)),
     SE = SD/sqrt(N)
     ) |>
-  round(2)
+mutate(across(where(is.numeric), ~ round(., 2)))
