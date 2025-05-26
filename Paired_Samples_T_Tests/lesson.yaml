@@ -111,7 +111,7 @@
   Hint: habits |> t.test(Pair(mood, habit) ~ 1, data=_)
 
 - Class: text
-  Output: Before we get into that last part of the sentence - the effect size (reported as d="1.14") - we need to put up some yellow warning lights. 
+  Output: The effect size was introduced in the module "One-Sample T-Tests". Before we get into that last part of the sentence - the effect size (reported as d="1.14") - we need to put up some yellow warning lights. 
   
 - Class: text
   Output: It turns out it is surprisingly tricky to agree upon a 'correct' effect size for a paired t-test. We talk through and provide some math and code to show this in your Notes, and provide some readings that could be interesting.  
@@ -152,5 +152,5 @@
 
 #37
 - Class: text
-  Output: In this lesson, we showed you two ways to calculate a within-subjects t-test. The way we recommend is through long datasets and pipe-friendly methods. This would require you to go over the Pivoting Datasets Module. If you don't have your data in the long format (multiple rows per participant), you should default to the clunkier Pair() method. 
+  Output: In this lesson, we showed you two ways to calculate a within-subjects t-test. The way we recommend is through long datasets and pipe-friendly methods. This would require you to go over the Pivoting Datasets Module (number 29). If you don't have your data in the long format (multiple rows per participant), you should default to the clunkier Pair() method. 
 
