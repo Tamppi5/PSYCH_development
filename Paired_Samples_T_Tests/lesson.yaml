@@ -111,7 +111,7 @@
   Hint: habits |> t.test(Pair(mood, habit) ~ 1, data=_)
 
 - Class: text
-  Output: Before we get into that last part of the sentence - the effect size (d="1.14") - we need to put up some yellow warning lights. 
+  Output: Before we get into that last part of the sentence - the effect size (reported as d="1.14") - we need to put up some yellow warning lights. 
   
 - Class: text
   Output: It turns out it is surprisingly tricky to agree upon a 'correct' effect size for a paired t-test. We talk through and provide some math and code to show this in your Notes, and provide some readings that could be interesting.  
@@ -121,7 +121,7 @@
   Output: It comes down to "How do we (or, do we even) account for the fact we've measured the same person twice?" That has complicated implications for effect size calculation.
 
 - Class: text
-  Output: What we present is not the 'only' way to calculate effect sizes. We hesitate to even call our method 'correct'. How about we agree that it is simply the one we intend to use in this Module.
+  Output: What we present is not the 'only' way to calculate effect sizes. We hesitate to even call our method 'correct'. However, we agree that it is simply the one we intend to use in this Module.
   
 - Class: cmd_question
   Output: Let's get their effect size. To do this, we're going to do something a bit new - we're going to tell R that we want the package effectsize's version of rm_d(). First, start with our data, habits, and pipe it. We then must write effectsize::rm_d() as the function's name to do that. We will pass it four arguments - Pair(mood, habit) ~ 1, adjust=FALSE, method="rm", and data=_. 
