@@ -38,7 +38,7 @@
   
 #7
 - Class: text
-  Output: So, we have three columns. Two, representing both experimental factors and the dependent variable we are plotting is a score on some writing they did in a study.
+  Output: So, we have three columns. Target, representing whose relationship conflict the participant told to evaluate (own or other's). Perspective is the vantage point of the text they read, first person or third person. Lastly, Wisdom was an expert's score on how wise they thought the participant was in analyzing the conflict.
   
 #8
 - Class: text
