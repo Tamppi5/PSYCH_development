@@ -59,7 +59,7 @@
   Output: We can get even more information if we pipe our continuous-variable-only dataset, activism, into the psych library's corr.test() function. Try that now.
   CorrectAnswer: activism |> corr.test()
   Hint: activism |> corr.test()
-  AnswerTests: omnitest(correctExpr="activism |> corr.test()")
+  AnswerTests: any_of_exprs("activism |> corr.test()", "activism |> psych::corr.test()")
 
 - Class: text
   Output: Great job. It prints out three things - first, the correlation matrix. Two, it will print out the N for each correlation (becoming a matrix if there are unequal N). And three, the p values. Notice the note at the bottom - probability values above the diagonal adjust for multiple comparisons, and we should always report those.
@@ -88,7 +88,7 @@
   Output: Or we can use a pipe-friendly option in cor_test() in the rstatix package. Take your data, activism, and pipe it into select, where we will select TOT and CARE, and then pipe that into cor_test().
   CorrectAnswer: activism |> select(TOT, CARE) |> cor_test()
   Hint: activism |> select(TOT, CARE) |> cor_test()
-  AnswerTests: omnitest(correctExpr='activism |> select(TOT, CARE) |> cor_test()')
+  AnswerTests: any_of_exprs('activism |> select(TOT, CARE) |> cor_test()', 'activism |> select(TOT, CARE) |> rstatix::cor_test()')
   
 - Class: cmd_question
   Output: If your data fits a Spearman correlation, add the argument method="spearman" to many of these functions. Take your data, activism, and pipe it into corr.test() function. Then add method="spearman" as an argument. 
@@ -103,17 +103,29 @@
   AnswerTests: omnitest(correctVal='.14')
   Hint: Look at the top half of the correlation matrix for p values.
   
-- Class: cmd_question
-  Output: Finally, we can also use the psych library to get Cronbach's Alpha of a scale. We loaded a second dataset, where we selected only the variables that made up the General Health Questionnaire, which they used as a control variable. The data is called ghq. Pipe it into names to view the question names.
-  CorrectAnswer: ghq |> names()
-  AnswerTests: omnitest(correctExpr='ghq |> names()')
-  Hint: Pipe ghq into names().
+- Class: text
+  Output: Finally, we can also use the psych library to get Cronbach's Alpha of a scale. But first, let's understand what Cronbach's Alpha actually measures and why we care about it.
+
+- Class: text
+  Output: Cronbach's Alpha measures "internal consistency" - essentially, how well the items in a scale work together to measure the same thing. Think of it like this - if you have 5 questions all supposed to measure extroversion, do people who score high on one question also tend to score high on the others?
+
+- Class: text
+  Output: Alpha ranges from 0 to 1. Values above 0.7 are generally considered acceptable, above 0.8 are good, and above 0.9 are excellent. Low alpha (below 0.7) suggests your questions might be measuring different things, while very high alpha (above 0.95) might mean your questions are so similar they're redundant.
+
+- Class: text
+  Output: We loaded a second dataset, where we selected only the variables that made up the General Health Questionnaire, which they used as a control variable. The data is called ghq. Pipe it into names() to view the question names.
 
 - Class: cmd_question
-  Output: We can see how multiple questions make up the GHQ. We can pipe this into the alpha() function from the psych library. Try that now.
+  Output: Let's see what questions make up this scale.
+  CorrectAnswer: ghq |> names()
+  AnswerTests: omnitest(correctExpr='ghq |> names()')
+  Hint: Pipe ghq into names() with ghq |> ...
+
+- Class: cmd_question
+  Output: We can see how multiple questions make up the GHQ. We can pipe ghq into the alpha() function from the psych library. Try that now.
   CorrectAnswer: ghq |> alpha()
-  AnswerTests: omnitest(correctExpr='ghq |> alpha()')
-  Hint: Pipe ghq into alpha()
+  AnswerTests: any_of_exprs('ghq |> alpha()', 'ghq |> psych::alpha()')
+  Hint: Pipe ghq into alpha() with ghq |>...
 
 - Class: text
   Output: There's a lot of output, but at the top, it shows that the raw_alpha is 0.89. That's all that is needed. It indicates a good internal consistency (overall high correlation between the item).
