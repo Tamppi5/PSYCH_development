@@ -43,6 +43,50 @@ script_results_identical <- function(result_name) {
 }
 
 plot_results_identical <- function(result_name) {
+  e <- get("e", parent.frame())
+
+  ## start with a clean slate
+  if (exists(result_name, .GlobalEnv))
+    rm(list = result_name, envir = .GlobalEnv)
+
+  ## try to run the student’s file
+  ok <- tryCatch({
+    source(e$script_temp_path, local = TRUE)
+    TRUE
+  }, error = function(err) FALSE)
+  if (!ok || !exists(result_name, .GlobalEnv)) return(FALSE)
+  user_res <- get(result_name, .GlobalEnv)
+
+  ## build the reference object
+  ref_env <- new.env()
+  capture.output(source(e$correct_script_temp_path, local = TRUE,
+                        envir = ref_env))
+  correct_res <- get(result_name, ref_env)
+
+  ## helper that removes attributes & orders rows
+  normalise <- function(df) {
+    df <- as.data.frame(df)
+    df <- df[order(names(df)[1], seq_len(nrow(df))), , drop = FALSE]
+    attributes(df) <- attributes(df)[c("names", "class")]
+    df
+  }
+
+  ## compare every layer, ignoring attributes and row order
+  same <- tryCatch({
+    u <- lapply(ggplot_build(user_res)$data,   normalise)
+    c <- lapply(ggplot_build(correct_res)$data, normalise)
+
+    length(u) == length(c) &&
+      all(vapply(seq_along(u),
+                 \(i) isTRUE(all.equal(u[[i]], c[[i]],
+                                       check.attributes = FALSE)),
+                 logical(1)))
+  }, error = function(err) FALSE)
+
+  same
+}
+
+plot_results_identical2 <- function(result_name) {
   # Get e
   e <- get('e', parent.frame())
   
