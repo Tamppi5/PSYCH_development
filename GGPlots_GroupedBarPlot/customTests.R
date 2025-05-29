@@ -45,6 +45,19 @@ script_results_identical <- function(result_name) {
 plot_results_identical <- function(result_name) {
   # Get e
   e <- get('e', parent.frame())
+
+    # First, try to source the user's script to see if it runs without error
+  user_script_success <- tryCatch({
+    source(e$script_temp_path, local = TRUE)
+    TRUE
+  }, error = function(e) {
+    FALSE
+  })
+  
+  # If user's script failed, return FALSE immediately
+  if (!user_script_success) {
+    return(FALSE)
+  }
   
   # Get user's result from global
   if(exists(result_name, globalenv())) {
