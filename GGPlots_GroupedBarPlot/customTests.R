@@ -45,8 +45,13 @@ script_results_identical <- function(result_name) {
 plot_results_identical <- function(result_name) {
   # Get e
   e <- get('e', parent.frame())
-
-    # First, try to source the user's script to see if it runs without error
+  
+  # Clear any existing result from global environment first
+  if(exists(result_name, globalenv())) {
+    rm(list = result_name, envir = globalenv())
+  }
+  
+  # First, try to source the user's script to see if it runs without error
   user_script_success <- tryCatch({
     source(e$script_temp_path, local = TRUE)
     TRUE
@@ -59,7 +64,7 @@ plot_results_identical <- function(result_name) {
     return(FALSE)
   }
   
-  # Get user's result from global
+  # Get user's result from global (should be newly created)
   if(exists(result_name, globalenv())) {
     user_res <- get(result_name, globalenv())
   } else {
@@ -81,7 +86,7 @@ plot_results_identical <- function(result_name) {
   correct_res <- get(result_name, tempenv)
   
   # For ggplot objects, compare the built plots
-  tryCatch({
+  result <- tryCatch({
     user_built <- ggplot_build(user_res)
     correct_built <- ggplot_build(correct_res)
     # Compare the data components
@@ -90,6 +95,9 @@ plot_results_identical <- function(result_name) {
     # Fallback to basic comparison
     all.equal(user_res, correct_res)
   })
+  
+  # Return TRUE only if objects are truly equal
+  return(isTRUE(result))
 }
 
 
