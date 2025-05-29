@@ -24,7 +24,8 @@ script_results_identical <- function(result_name) {
   )
   correct_res <- get(result_name, tempenv)
   # Compare results
-  all.equal(user_res, correct_res)
+  result <- all.equal(user_res, correct_res)
+  return(isTRUE(result))
 }
 
 plot_results_identical <- function(result_name) {
@@ -50,7 +51,8 @@ plot_results_identical <- function(result_name) {
   )
   correct_res <- get(result_name, tempenv)
   # Compare results
-  all.equal(set_panel_size(user_res), set_panel_size(correct_res)) 
+  result <- all.equal(set_panel_size(user_res), set_panel_size(correct_res))
+  return(isTRUE(result))
 }
 
 
