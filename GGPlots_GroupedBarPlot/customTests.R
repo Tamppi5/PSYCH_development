@@ -45,57 +45,50 @@ script_results_identical <- function(result_name) {
 plot_results_identical <- function(result_name) {
   # Get e
   e <- get('e', parent.frame())
-  
   # First, try to source the user's script to see if it runs without error
   user_script_success <- tryCatch({
     source(e$script_temp_path, local = TRUE)
     TRUE
   }, error = function(e) {
-    FALSE
+  FALSE
   })
-  
   # If user's script failed, return FALSE immediately
   if (!user_script_success) {
     return(FALSE)
   }
-  
   # Get user's result from global
   if(exists(result_name, globalenv())) {
     user_res <- get(result_name, globalenv())
-  } else {
+    } else {
     return(FALSE)
   }
-  
   # Source correct result in new env and get result
   tempenv <- new.env()
   # Capture output to avoid double printing
   temp <- capture.output(
     local(
-      try(
-        source(e$correct_script_temp_path, local = TRUE),
-        silent = TRUE
-      ),
-      envir = tempenv
+    try(
+    source(e$correct_script_temp_path, local = TRUE),
+      silent = TRUE
+    ),
+    envir = tempenv
     )
-  )
+  ) 
   correct_res <- get(result_name, tempenv)
-  
-  # Compare results - try with set_panel_size if available, otherwise direct comparison
+  # For ggplot objects, compare the built plots instead of the ggplot objects themselves
   result <- tryCatch({
-    # Try to use set_panel_size if the egg package is loaded
-    if(exists("set_panel_size")) {
-      all.equal(set_panel_size(user_res), set_panel_size(correct_res))
-    } else {
-      # Fallback to direct comparison
-      all.equal(user_res, correct_res)
-    }
+    user_built <- ggplot_build(user_res)
+    correct_built <- ggplot_build(correct_res)
+    # Compare the data and layout components
+    data_equal <- isTRUE(all.equal(user_built$data, correct_built$data))
+    layout_equal <- isTRUE(all.equal(user_built$layout, correct_built$layout))
+    data_equal && layout_equal
   }, error = function(e) {
-    # If set_panel_size fails, try direct comparison
-    all.equal(user_res, correct_res)
+    # Fallback to simpler comparison if ggplot_build fails
+    FALSE
   })
-  
-  return(isTRUE(result))
-}
+  return(result)
+} 
 
 
 getState <- function(){
