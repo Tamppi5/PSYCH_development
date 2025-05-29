@@ -79,8 +79,21 @@ plot_results_identical <- function(result_name) {
     )
   )
   correct_res <- get(result_name, tempenv)
-  # Compare results
-  result <- all.equal(set_panel_size(user_res), set_panel_size(correct_res))
+  
+  # Compare results - try with set_panel_size if available, otherwise direct comparison
+  result <- tryCatch({
+    # Try to use set_panel_size if the egg package is loaded
+    if(exists("set_panel_size")) {
+      all.equal(set_panel_size(user_res), set_panel_size(correct_res))
+    } else {
+      # Fallback to direct comparison
+      all.equal(user_res, correct_res)
+    }
+  }, error = function(e) {
+    # If set_panel_size fails, try direct comparison
+    all.equal(user_res, correct_res)
+  })
+  
   return(isTRUE(result))
 }
 

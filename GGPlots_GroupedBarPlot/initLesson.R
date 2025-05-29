@@ -1,4 +1,5 @@
 swirl_options(swirl_logging = FALSE)
+library(egg)
 Paradox <- structure(list(Target = structure(c(2L, 2L, 2L, 2L, 1L, 1L, 2L, 
                                     1L, 1L, 2L, 2L, 1L, 1L, 2L, 1L, 1L, 2L, 2L, 2L, 1L, 1L, 1L, 2L, 
                                     2L, 1L, 2L, 2L, 1L, 2L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 1L, 1L, 
