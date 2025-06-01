@@ -1,29 +1,15 @@
 # GGplot grouped bar plots
 
+
 script_results_identical <- function(result_name) {
   # Get e
   e <- get('e', parent.frame())
-  
-  # First, try to source the user's script to see if it runs without error
-  user_script_success <- tryCatch({
-    source(e$script_temp_path, local = TRUE)
-    TRUE
-  }, error = function(e) {
-    FALSE
-  })
-  
-  # If user's script failed, return FALSE immediately
-  if (!user_script_success) {
-    return(FALSE)
-  }
-  
   # Get user's result from global
   if(exists(result_name, globalenv())) {
     user_res <- get(result_name, globalenv())
   } else {
     return(FALSE)
   }
-  
   # Source correct result in new env and get result
   tempenv <- new.env()
   # Capture output to avoid double printing
@@ -38,83 +24,18 @@ script_results_identical <- function(result_name) {
   )
   correct_res <- get(result_name, tempenv)
   # Compare results
-  result <- all.equal(user_res, correct_res)
-  return(isTRUE(result))
+  all.equal(user_res, correct_res)
 }
 
 plot_results_identical <- function(result_name) {
-  e <- get("e", parent.frame())
-
-  ## start with a clean slate
-  if (exists(result_name, .GlobalEnv))
-    rm(list = result_name, envir = .GlobalEnv)
-
-  ## try to run the student’s file
-  ok <- tryCatch({
-    source(e$script_temp_path, local = TRUE)
-    TRUE
-  }, error = function(err) FALSE)
-  if (!ok || !exists(result_name, .GlobalEnv)) return(FALSE)
-  user_res <- get(result_name, .GlobalEnv)
-
-  ## build the reference object
-  ref_env <- new.env()
-  capture.output(source(e$correct_script_temp_path, local = TRUE,
-                        envir = ref_env))
-  correct_res <- get(result_name, ref_env)
-
-  ## helper that removes attributes & orders rows
-  normalise <- function(df) {
-    df <- as.data.frame(df)
-    df <- df[order(names(df)[1], seq_len(nrow(df))), , drop = FALSE]
-    attributes(df) <- attributes(df)[c("names", "class")]
-    df
-  }
-
-  ## compare every layer, ignoring attributes and row order
-  same <- tryCatch({
-    u <- lapply(ggplot_build(user_res)$data,   normalise)
-    c <- lapply(ggplot_build(correct_res)$data, normalise)
-
-    length(u) == length(c) &&
-      all(vapply(seq_along(u),
-                 \(i) isTRUE(all.equal(u[[i]], c[[i]],
-                                       check.attributes = FALSE)),
-                 logical(1)))
-  }, error = function(err) FALSE)
-
-  same
-}
-
-plot_results_identical2 <- function(result_name) {
   # Get e
   e <- get('e', parent.frame())
-  
-  # Clear any existing result from global environment first
-  if(exists(result_name, globalenv())) {
-    rm(list = result_name, envir = globalenv())
-  }
-  
-  # First, try to source the user's script to see if it runs without error
-  user_script_success <- tryCatch({
-    source(e$script_temp_path, local = TRUE)
-    TRUE
-  }, error = function(e) {
-    FALSE
-  })
-  
-  # If user's script failed, return FALSE immediately
-  if (!user_script_success) {
-    return(FALSE)
-  }
-  
-  # Get user's result from global (should be newly created)
+  # Get user's result from global
   if(exists(result_name, globalenv())) {
     user_res <- get(result_name, globalenv())
   } else {
     return(FALSE)
   }
-  
   # Source correct result in new env and get result
   tempenv <- new.env()
   # Capture output to avoid double printing
@@ -128,20 +49,8 @@ plot_results_identical2 <- function(result_name) {
     )
   )
   correct_res <- get(result_name, tempenv)
-  
-  # For ggplot objects, compare the built plots
-  result <- tryCatch({
-    user_built <- ggplot_build(user_res)
-    correct_built <- ggplot_build(correct_res)
-    # Compare the data components
-    all.equal(user_built$data, correct_built$data)
-  }, error = function(e) {
-    # Fallback to basic comparison
-    all.equal(user_res, correct_res)
-  })
-  
-  # Return TRUE only if objects are truly equal
-  return(isTRUE(result))
+  # Compare results
+  all.equal(set_panel_size(user_res), set_panel_size(correct_res)) 
 }
 
 
