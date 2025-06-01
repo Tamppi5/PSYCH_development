@@ -1,4 +1,5 @@
-#GGPlots - Violin Plots
+# GGplot grouped bar plots
+
 
 script_results_identical <- function(result_name) {
   # Get e
@@ -27,29 +28,92 @@ script_results_identical <- function(result_name) {
 }
 
 plot_results_identical <- function(result_name) {
-  # Get e
-  e <- get('e', parent.frame())
-  # Get user's result from global
-  if(exists(result_name, globalenv())) {
-    user_res <- get(result_name, globalenv())
+  e <- get("e", parent.frame())
+
+  student_env <- new.env(parent = .GlobalEnv) # p_sum from .GlobalEnv should be accessible
+
+  script_ran_ok <- tryCatch({
+    source(e$script_temp_path, local = student_env) # Source into student_env
+    TRUE
+  }, error = function(err) {
+    FALSE
+  })
+
+  if (!script_ran_ok) {
+    return(FALSE) # Student's script had an error
+  }
+
+  # Get the user's result (the plot object) from the student_env
+  if (exists(result_name, envir = student_env, inherits = FALSE)) {
+    user_res <- get(result_name, envir = student_env, inherits = FALSE)
   } else {
     return(FALSE)
   }
-  # Source correct result in new env and get result
-  tempenv <- new.env()
-  # Capture output to avoid double printing
-  temp <- capture.output(
-    local(
-      try(
-        source(e$correct_script_temp_path, local = TRUE),
-        silent = TRUE
-      ),
-      envir = tempenv
-    )
-  )
-  correct_res <- get(result_name, tempenv)
-  # Compare results
-  all.equal(set_panel_size(user_res), set_panel_size(correct_res)) 
+
+  if (!inherits(user_res, "ggplot")) {
+    return(FALSE)
+  }
+
+  correct_env <- new.env(parent = .GlobalEnv) # p_sum from .GlobalEnv should be accessible
+
+  correct_script_ran_ok <- tryCatch({
+    source(e$correct_script_temp_path, local = correct_env)
+    TRUE
+  }, error = function(err) {
+    FALSE
+  })
+  
+  if (!correct_script_ran_ok || !exists(result_name, envir = correct_env, inherits = FALSE)) {
+    return(FALSE) 
+  }
+  correct_res <- get(result_name, envir = correct_env, inherits = FALSE)
+
+  if (!inherits(correct_res, "ggplot")) {
+    return(FALSE) # Problem with the lesson's correct script
+  }
+
+  normalise_df_for_comparison <- function(df) {
+    df_norm <- as.data.frame(df)
+    if (nrow(df_norm) == 0 || ncol(df_norm) == 0) return(df_norm)
+
+    for (j in seq_along(df_norm)) {
+      if (is.factor(df_norm[[j]])) {
+        df_norm[[j]] <- as.character(df_norm[[j]])
+      }
+    }
+    
+    df_norm <- suppressWarnings(df_norm[do.call(order, df_norm), , drop = FALSE])
+    rownames(df_norm) <- NULL # Remove rownames after sorting
+
+    return(df_norm)
+  }
+
+  comparison_result <- tryCatch({
+    user_built_layers <- ggplot_build(user_res)$data
+    correct_built_layers <- ggplot_build(correct_res)$data
+
+    if (length(user_built_layers) != length(correct_built_layers)) {
+      return(FALSE) # Different number of layers
+    }
+
+    if (length(user_built_layers) == 0) {
+      return(TRUE) # Both plots have zero layers (e.g., empty ggplot() call)
+    }
+
+    all_layers_equal <- all(vapply(seq_along(user_built_layers), function(i) {
+      u_layer_data <- normalise_df_for_comparison(user_built_layers[[i]])
+      c_layer_data <- normalise_df_for_comparison(correct_built_layers[[i]])
+      # Compare normalized data frames
+      isTRUE(all.equal(u_layer_data, c_layer_data, check.attributes = FALSE))
+    }, logical(1)))
+
+    return(all_layers_equal)
+  }, error = function(e) {
+    # message(paste("Error during ggplot comparison:", e$message)) # For debugging
+    FALSE # Error during comparison means they are not considered identical
+  })
+
+  return(comparison_result)
 }
 
 getState <- function(){
@@ -67,7 +131,7 @@ submit_log <- function(){
   selection <- getState()$val
   if(selection == "Yes"){
     # Please edit the link below
-    pre_fill_link <- "https://docs.google.com/forms/d/e/1FAIpQLSeeJi1HQoXLxS9NLwgEN5TKPAjXxqNjHv_Ee0EbfAJGTabwYA/viewform?usp=pp_url&entry.996111921"
+    pre_fill_link <- "https://docs.google.com/forms/d/e/1FAIpQLScvlcDi_wL3LPrY3c-GFF7lB0TaMS3PnLANHTZJ66Jw4Qs7Hw/viewform?usp=pp_url&entry.996111921"
     # Do not edit the code below
     if(!grepl("=$", pre_fill_link)){
       pre_fill_link <- paste0(pre_fill_link, "=")
