@@ -18,7 +18,7 @@ plot <-
   ) +
   stat_summary(
     # Repeat what you did above a second time below. (Truly, copy and paste!). 
-    # The only difference here should be geom should equal "line"
+    # Now change the code so that geom should equal "line"
     # And instead of size=3, have it say linewidth=1
-    # We also need to add one more argument, where we set the aes() of group to be equal to muscle.
+    # We also need to add one more argument aes(), in which we set group to be equal to muscle.
   ) 
