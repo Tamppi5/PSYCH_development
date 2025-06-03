@@ -30,20 +30,20 @@ script_results_identical <- function(result_name) {
 plot_results_identical <- function(result_name) {
   e <- get("e", parent.frame())
 
-  student_env <- new.env(parent = .GlobalEnv) # p_sum from .GlobalEnv should be accessible
+  student_env <- new.env(parent = .GlobalEnv) 
 
   script_ran_ok <- tryCatch({
-    source(e$script_temp_path, local = student_env) # Source into student_env
+    set.seed(123) # Set seed before running student's script
+    source(e$script_temp_path, local = student_env) 
     TRUE
   }, error = function(err) {
     FALSE
   })
 
   if (!script_ran_ok) {
-    return(FALSE) # Student's script had an error
+    return(FALSE) 
   }
 
-  # Get the user's result (the plot object) from the student_env
   if (exists(result_name, envir = student_env, inherits = FALSE)) {
     user_res <- get(result_name, envir = student_env, inherits = FALSE)
   } else {
@@ -54,9 +54,10 @@ plot_results_identical <- function(result_name) {
     return(FALSE)
   }
 
-  correct_env <- new.env(parent = .GlobalEnv) # p_sum from .GlobalEnv should be accessible
+  correct_env <- new.env(parent = .GlobalEnv) 
 
   correct_script_ran_ok <- tryCatch({
+    set.seed(123) # Set the SAME seed before running correct script
     source(e$correct_script_temp_path, local = correct_env)
     TRUE
   }, error = function(err) {
@@ -69,7 +70,7 @@ plot_results_identical <- function(result_name) {
   correct_res <- get(result_name, envir = correct_env, inherits = FALSE)
 
   if (!inherits(correct_res, "ggplot")) {
-    return(FALSE) # Problem with the lesson's correct script
+    return(FALSE) 
   }
 
   normalise_df_for_comparison <- function(df) {
@@ -83,34 +84,37 @@ plot_results_identical <- function(result_name) {
     }
     
     df_norm <- suppressWarnings(df_norm[do.call(order, df_norm), , drop = FALSE])
-    rownames(df_norm) <- NULL # Remove rownames after sorting
+    rownames(df_norm) <- NULL 
 
     return(df_norm)
   }
 
   comparison_result <- tryCatch({
+    # It's good practice to set the seed again right before building,
+    # in case other operations might have affected the RNG state,
+    # though in this specific flow it might be redundant.
+    set.seed(123)
     user_built_layers <- ggplot_build(user_res)$data
+    set.seed(123)
     correct_built_layers <- ggplot_build(correct_res)$data
 
     if (length(user_built_layers) != length(correct_built_layers)) {
-      return(FALSE) # Different number of layers
+      return(FALSE) 
     }
 
     if (length(user_built_layers) == 0) {
-      return(TRUE) # Both plots have zero layers (e.g., empty ggplot() call)
+      return(TRUE) 
     }
 
     all_layers_equal <- all(vapply(seq_along(user_built_layers), function(i) {
       u_layer_data <- normalise_df_for_comparison(user_built_layers[[i]])
       c_layer_data <- normalise_df_for_comparison(correct_built_layers[[i]])
-      # Compare normalized data frames
       isTRUE(all.equal(u_layer_data, c_layer_data, check.attributes = FALSE))
     }, logical(1)))
 
     return(all_layers_equal)
   }, error = function(e) {
-    # message(paste("Error during ggplot comparison:", e$message)) # For debugging
-    FALSE # Error during comparison means they are not considered identical
+    FALSE 
   })
 
   return(comparison_result)
