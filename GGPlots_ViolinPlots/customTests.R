@@ -88,6 +88,27 @@ plot_results_identical <- function(result_name) {
     return(df_norm)
   }
 
+  if(isTRUE(getOption("swirl_debug_tests"))) { 
+    message("--- DEBUG: User Plot Info (student's script) ---")
+    print(str(user_plot_info)) # Using print(str(...)) for more detail
+    # dput(user_plot_info, file = "debug_user_plot_info.R") # Optional: save to file
+
+    message("--- DEBUG: Correct Plot Info (ggplot3-correct.R) ---")
+    print(str(correct_plot_info)) # Using print(str(...))
+    # dput(correct_plot_info, file = "debug_correct_plot_info.R") # Optional: save to file
+
+    message("--- DEBUG: all.equal(user_plot_info, correct_plot_info) output ---")
+    # Store the all.equal result to see its full message if not TRUE
+    comparison_details <- all.equal(user_plot_info, correct_plot_info, check.attributes = FALSE, tolerance = 1e-6)
+    print(comparison_details) 
+  }
+  # --- END DEBUGGING OUTPUT ---
+
+  if (is.null(user_plot_info) || is.null(correct_plot_info)) return(FALSE)
+
+  comparison_status <- isTRUE(all.equal(user_plot_info, correct_plot_info, check.attributes = FALSE, tolerance = 1e-6))
+      
+
   comparison_result <- tryCatch({
     user_built_layers <- ggplot_build(user_res)$data
     correct_built_layers <- ggplot_build(correct_res)$data
