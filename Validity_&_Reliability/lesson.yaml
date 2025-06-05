@@ -24,16 +24,12 @@
 #5  
 - Class: text
   Output: Reliable - It can provide consistent results each time it is administered, regardless of who is administering it.
-#6  
-- Class: text
-  Output: and
 
 #7  
 - Class: text
   Output: Valid - The measure accurately accesses what it claims to measure.
   
 #8
-
 - Class: mult_question
   Output: So, is heart rate a reliable measure for IQ?
   AnswerChoices: Yes;No;I don't know 
@@ -84,12 +80,15 @@
 - Class: text
   Output: "Test-retest reliability is testing the same measure on the same participant multiple times. Depending on the context the correlation has to pass high standards,e.g., diagnostic criteria need a high test-retest reliability. Note, however, that correlations can be limited and sometimes we want to look at the raw-data of test and retest (i.e. with a Bland-Altman plot; which goes beyond our lecture). "
 
+- Class: text
+  Output: "Imagine a new questionnaire designed to measure daily stress levels and the participant's actual stress level between the two days to be close to equal. If the test gives wildly different scores for the same person tested on these two days, it lacks test-retest reliability."
+
 #16
 - Class: text
   Output: "Internal consistency reliability measures the agreement on different items of the same test. The point is that your participants should agree with similar things provided they are all measuring the same thing."
 #17
 - Class: text
-  Output: "We usually use a statistic called Cronbachs alpha here. Again, .70 is acceptable, but .80 is good too."
+  Output: "We usually use a statistic called Cronbachs alpha here, which was introduced in module 12, Correlation. Again, .70 is acceptable, but .80 is good too."
 #18
 - Class: text
   Output: "For example, we could ask- How much do you like this person, how likely are you to hang out with this person, how much would you want to play another game with this person -- and hope all three questions are getting at the overall question of the amount you like a person."
@@ -123,7 +122,7 @@
 
 #24
 - Class: text
-  Output: "We can measure their intelligence in a different way as well. If they both preform equally at predicting IQ, then that would give us some proof that heart rate is related to IQ. \n\n On the other hand, if the other test was predicting IQ much better than heart rate, we could infer that maybe heart rate isn't the best at predicting IQ."
+  Output: "We can measure their intelligence in a different way as well. If they both perform equally at predicting IQ, then that would give us some proof that heart rate is related to IQ. \n\n On the other hand, if the other test was predicting IQ much better than heart rate, we could infer that maybe heart rate isn't the best at predicting IQ."
   
 #25
 - Class: text
