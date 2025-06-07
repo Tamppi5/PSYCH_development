@@ -166,10 +166,10 @@ plot_results_identical <- function(result_name) {
     # message(paste("Error sourcing correct script:", err$message)) # For debugging
     FALSE
   })
-
+  
   if (!correct_script_ran_ok || !exists(result_name, envir = correct_env, inherits = FALSE)) {
     # message("Correct script failed or did not create result_name.") # For debugging
-    return(FALSE)
+    return(FALSE) 
   }
   correct_res <- get(result_name, envir = correct_env, inherits = FALSE)
 
