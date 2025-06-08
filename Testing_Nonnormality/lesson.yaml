@@ -39,7 +39,7 @@
   
 #add description of study
 - Class: text
-  Output: We've loaded some data in your environment called Stickers. This comes from the Wilcoxon Sign-Rank module; researchers investigated how observing peer preferences influences the development of personal preferences in four-year-old children by exposing them to videos where peers expressed liking or disliking for certain stickers. The children then participated in the Dictator Game, a classic resource distribution task, to assess whether witnessing peers’ preferences affected their choices and allocations.
+  Output: We've loaded some data in your environment called Stickers. This comes from the Wilcoxon Sign-Rank module (number 21); researchers investigated how observing peer preferences influences the development of personal preferences in four-year-old children by exposing them to videos where peers expressed liking or disliking for certain stickers. The children then participated in the Dictator Game, a classic resource distribution task, to assess whether witnessing peers’ preferences affected their choices and allocations.
 
 - Class: text
   Output: Citation is "Hennefield, L., & Markson, L. (2017). Four-year-old Children Align their Preferences with those of their Peers. Collabra- Psychology, 3(1), 14. doi.org/10.1525/collabra.89."
@@ -86,7 +86,7 @@
 
 # Explain study
 - Class: text
-  Output: For this example, we will draw from the Kruskal–Wallis ANOVAs module. In this paper, they investigated whether or not the ominous background music that often accompanies shark footage in documentaries impacts an individual's perceptions of sharks. Their data showed that participants rated sharks more negatively and less positively after viewing a 60-second video clip of swimming sharks set to ominous background music, compared to participants who watched the same video clip set to uplifting background music or silence. Attitudes toward sharks did not differ among participants assigned to audio-only control treatments.
+  Output: For this example, we will refer to the Kruskal–Wallis ANOVAs module (number 26). In this paper, they investigated whether or not the ominous background music that often accompanies shark footage in documentaries impacts an individual's perceptions of sharks. Their data showed that participants rated sharks more negatively and less positively after viewing a 60-second video clip of swimming sharks set to ominous background music, compared to participants who watched the same video clip set to uplifting background music or silence. Attitudes toward sharks did not differ among participants assigned to audio-only control treatments.
   
 - Class: text
   Output: "The citation is Nosal, A. P., Keenan, E. A., Hastings, P. A., & Gneezy, A. (2016). The Effect of Background Music in Shark Documentaries on Viewers’ Perceptions of Sharks. PLOS ONE, 11(8), e0159279. doi.org/10.1371/journal.pone.0159279."

@@ -26,29 +26,46 @@ script_results_identical <- function(result_name) {
   identical(user_res, correct_res)
 }
 plot_results_identical <- function(result_name) {
-  # Get e
-  e <- get('e', parent.frame())
-  # Get user's result from global
-  if(exists(result_name, globalenv())) {
-    user_res <- get(result_name, globalenv())
-  } else {
-    return(FALSE)
+  e <- get("e", parent.frame())
+
+  student_env <- new.env(parent = .GlobalEnv) 
+
+  # It runs the student's code; if an error occurs, it returns FALSE instead of stopping.
+  script_ran_ok <- tryCatch({
+    source(e$script_temp_path, local = student_env) 
+    TRUE
+  }, error = function(err) {
+    return(FALSE) # Script failed to run, so it's incorrect.
+  })
+
+  if (!script_ran_ok) {
+    return(FALSE) 
   }
-  # Source correct result in new env and get result
-  tempenv <- new.env()
-  # Capture output to avoid double printing
-  temp <- capture.output(
-    local(
-      try(
-        source(e$correct_script_temp_path, local = TRUE),
-        silent = TRUE
-      ),
-      envir = tempenv
-    )
-  )
-  correct_res <- get(result_name, tempenv)
-  # Compare results
-  all.equal(set_panel_size(user_res), set_panel_size(correct_res)) 
+
+  if (!exists(result_name, envir = student_env, inherits = FALSE)) {
+    return(FALSE) # Script ran but didn't create the expected object.
+  }
+  
+  user_res <- get(result_name, envir = student_env, inherits = FALSE)
+
+  if (!inherits(user_res, "ggplot")) {
+    return(FALSE) # The object created isn't a plot.
+  }
+
+  correct_env <- new.env(parent = .GlobalEnv)
+  source(e$correct_script_temp_path, local = correct_env)
+  correct_res <- get(result_name, envir = correct_env, inherits = FALSE)
+
+  # Compare the underlying data of the plots. This is more reliable than comparing the plot objects directly.
+  comparison_result <- tryCatch({
+    user_built <- ggplot_build(user_res)
+    correct_built <- ggplot_build(correct_res)
+    isTRUE(all.equal(user_built$data, correct_built$data))
+  }, error = function(e) {
+    FALSE # An error during comparison means they are not the same.
+  })
+
+  return(comparison_result)
 }
 
 
