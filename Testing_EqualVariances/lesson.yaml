@@ -61,7 +61,7 @@
   Hint: "Look at the first line of the glimpse() output, or check your Environment tab."
 
 - Class: text
-  Output: "Great job. There are 24 variables. For now, we will focus on `Stereopsis` (whether stereoscopic 3D was Enabled or Disabled) and `ImmersionScore` (a numerical score indicating how immersed the user felt)."
+  Output: "Great job. There are 4 variables. For now, we will focus on `Stereopsis` (whether stereoscopic 3D was Enabled or Disabled) and `ImmersionScore` (a numerical score indicating how immersed the user felt)."
   
 - Class: cmd_question
   Output: "Our first step with a new dataset should be to visualize it. Let's use ggplot2 to create a violin plot. To do this, pipe the `data` object into ggplot(). Inside ggplot(), specify the aesthetics with `aes()`: the y-variable should be `ImmersionScore` and the x-variable should be `Stereopsis`. After that, add a `geom_violin()` layer."
