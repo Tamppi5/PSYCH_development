@@ -67,7 +67,7 @@
   Output: "Our first step with a new dataset should be to visualize it. Let's use ggplot2 to create a violin plot. To do this, pipe the `data` object into ggplot(). Inside ggplot(), specify the aesthetics with `aes()`: the y-variable should be `ImmersionScore` and the x-variable should be `Stereopsis`. After that, add a `geom_violin()` layer."
   CorrectAnswer: data |> ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()
   AnswerTests: any_of_exprs('data |> ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()', 'data %>% ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()')
-  Hint: `data |> ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()`
+  Hint: "data |> ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()"
 
 - Class: mult_question
   Output: "Based on the plot, which group appears to have a larger variance (i.e., is wider)?"
@@ -86,7 +86,7 @@
   Output: "To run this test, we can use the `levene_test()` function from the `rstatix` package. Pipe the `data` object into `levene_test()`. The argument to the function is a formula specifying the relationship we want to test: `ImmersionScore ~ Stereopsis`. Try it now."
   CorrectAnswer: data |> levene_test(ImmersionScore ~ Stereopsis)
   AnswerTests: omnitest(correctExpr='data |> levene_test(ImmersionScore ~ Stereopsis)')
-  Hint: `data |> levene_test(ImmersionScore ~ Stereopsis)`
+  Hint: "data |> levene_test(ImmersionScore ~ Stereopsis)""
   
 - Class: text
   Output: "The test output shows the degrees of freedom (df1, df2), the F statistic, and the p-value. For our dataset, the test returns a p-value of 0.025."
