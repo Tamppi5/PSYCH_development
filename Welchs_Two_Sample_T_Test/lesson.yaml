@@ -77,7 +77,7 @@
 - Class: cmd_question
   Output: Let's use the levene_test() function from the rstatix package to do this. Start by piping (|>) your dataset (concealed) into levene_test(). The equation will take a single argument, which will be moral ~ condition. Try that now. 
   CorrectAnswer: concealed |> levene_test(moral~condition)
-  AnswerTests: omnitest(correctExpr='concealed |> levene_test(moral~condition)')
+  AnswerTests: any_of_exprs('concealed |> levene_test(moral~condition)', 'concealed |> rstatix::levene_test(moral~condition)')
   Hint: concealed |> levene_test(moral~condition)
 
 - Class: text
