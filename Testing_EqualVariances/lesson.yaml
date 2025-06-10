@@ -217,11 +217,11 @@
 - Class: cmd_question
   Output: The library lmtest has a function called bptest(). This stands for the Breusch-Pagan Test, a test for the heteroscedasticity of residuals if given a model. Pass our model, vrLM, as an argument into bptest().
   CorrectAnswer: bptest(vrLM)
-  AnswerTests: omnitest(correctExpr='bptest(vrLM)')
+  AnswerTests: any_of_exprs('bptest(vrLM)', 'lmtest::bptest(vrLM)')
   Hint: bptest(vrLM)
 
 - Class: text
-  Output: And indeed! With a p-value of 0.613, we fail to reject the null hypothesis of homoscedasticity. This gives us confidence that the variance of our residuals is constant, and our model's standard errors are reliable.
+  Output: And indeed! With a p-value of 0.6559, we fail to reject the null hypothesis of homoscedasticity. This gives us confidence that the variance of our residuals is constant, and our model's standard errors are reliable.
 
 - Class: text
   Output: "And now we've tested homogeneity of variances in multiple ways - using levene_test() for categorical-focused models, and using bptest() to test the residuals of linear models. We considered how Levene's can be based on both the mean (good if not skewed) or median (robust and able to handle skewed data), but also reflected on Levene's limitations. In various other modules, we also address how some of our models are robust themselves to these violations (like ANOVA), while others can easily be addressed (robust standard errors)."
