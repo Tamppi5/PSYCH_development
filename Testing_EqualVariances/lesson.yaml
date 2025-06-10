@@ -116,7 +116,7 @@
   Output: The citation for this study is "Imada, H., Chan, W. F., Ng, Y. K., Man, L. H., Wong, M. S., Cheng, B. L., & Feldman, G. (2022). Rewarding More Is Better for Soliciting Help, Yet More So for Cash Than for Goods. Revisiting and Reframing the Tale of Two Markets With Replications and Extensions of Heyman and Ariely (2004). Collabra Psychology, 8(1), 32572. https://doi.org/10.1525/collabra.32572".
   
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: We've also loaded their dataset in your environment, called df2. Run df2 |> summary() to learn more about it.
   CorrectAnswer: df2 |> summary()
   AnswerTests: omnitest(correctExpr='df2 |> summary()')
