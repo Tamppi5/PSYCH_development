@@ -709,4 +709,15 @@ df2 <- structure(list(Condition = structure(c(4L, 3L, 4L, 3L, 1L, 1L,
                                                                `2202` = 2202L, `2203` = 2203L),
                                                              class = "omit"))
 
-cLM <- lm(C ~ YRB_dev + poverty_dev + poverty_current, data=data)
+cLM <- lm(C ~ YRB_dev + poverty_dev + poverty_current, data=data2)
+
+# ── VR immersion dataset ──────────────────────────────────────────────
+data <- data.frame(
+  ImmersionScore = totalImmersion,
+  Stereopsis     = factor(stereopsis, levels = c(0,1),
+                                    labels  = c("Disabled","Enabled")),
+  FOV            = fov,
+  FPS            = fps
+)
+
+vrLM <- lm(ImmersionScore ~ FOV + FPS, data = data)

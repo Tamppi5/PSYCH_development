@@ -89,7 +89,7 @@
   FigureType: new
 
 - Class: text
-  Output: Now that we have shown the unequal variances, we can use Welch's T-Test. The great thing about Welch's Two two-sample t-test is that it is the default t-test in R. 
+  Output: Now that we have shown the unequal variances, we can use Welch's T-Test. The great thing about Welch's two-sample t-test is that it is the default t-test in R. 
   
 - Class: cmd_question
   Output: Let's run a Welch's t-test on the data, seeing if concealing a hidden identity changes perceptions of morality. Take our data, concealed, and pipe it (|>) into the t.test() function. Pass that function three arguments, moral~condition, data=_, and var.equal=FALSE.
@@ -128,7 +128,7 @@
 - Class: cmd_question
   Output: To get their effect size, we need to use a new function, and we will pipe (|>) our data (concealed) into it.  In the lsr library, there is a function called cohensD(). It takes at least two inputs- the formula (moral ~ condition) and the data (for us because we are piping, remember data=_). Let's try just those two inputs now.
   CorrectAnswer: concealed |> cohensD(moral~condition, data=_)
-  AnswerTests: omnitest(correctExpr='concealed |> cohensD(moral~condition, data=_)')
+  AnswerTests: any_of_exprs('concealed |> cohensD(moral~condition, data=_)', 'concealed |> lsr::cohensD(moral~condition, data=_)')
   Hint: concealed |> cohensD(moral~condition, data=_)
 
 - Class: text
