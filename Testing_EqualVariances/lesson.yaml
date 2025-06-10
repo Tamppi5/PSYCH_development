@@ -86,7 +86,7 @@
   Output: "To run this test, we can use the `levene_test()` function from the `rstatix` package. Pipe the `data` object into `levene_test()`. The argument to the function is a formula specifying the relationship we want to test: `ImmersionScore ~ Stereopsis`. Try it now."
   CorrectAnswer: data |> levene_test(ImmersionScore ~ Stereopsis)
   AnswerTests: omnitest(correctExpr='data |> levene_test(ImmersionScore ~ Stereopsis)')
-  Hint: "data |> levene_test(ImmersionScore ~ Stereopsis)""
+  Hint: "data |> levene_test(ImmersionScore ~ Stereopsis)"
   
 - Class: text
   Output: "The test output shows the degrees of freedom (df1, df2), the F statistic, and the p-value. For our dataset, the test returns a p-value of 0.025."
