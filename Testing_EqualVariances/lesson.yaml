@@ -85,21 +85,21 @@
 - Class: cmd_question
   Output: "To run this test, we can use the `levene_test()` function from the `rstatix` package. Pipe the `data` object into `levene_test()`. The argument to the function is a formula specifying the relationship we want to test: `ImmersionScore ~ Stereopsis`. Try it now."
   CorrectAnswer: data |> levene_test(ImmersionScore ~ Stereopsis)
-  AnswerTests: omnitest(correctExpr='data |> levene_test(ImmersionScore ~ Stereopsis)')
+  AnswerTests: any_of_exprs('data |> levene_test(ImmersionScore ~ Stereopsis)', 'rstatix::levene_test(data, ImmersionScore ~ Stereopsis)')
   Hint: "data |> levene_test(ImmersionScore ~ Stereopsis)"
   
 - Class: text
-  Output: "The test output shows the degrees of freedom (df1, df2), the F statistic, and the p-value. For our dataset, the test returns a p-value of 0.025."
+  Output: "The test output shows the degrees of freedom (df1, df2), the F statistic, and the p-value. For our dataset, the test returns a p-value of 0.00959."
   
 - Class: mult_question
-  Output: "Given a p-value of 0.025 and a standard alpha level of 0.05, what do you conclude?"
+  Output: "Given a p-value of 0.00959 and a standard alpha level of 0.05, what do you conclude?"
   AnswerChoices: We reject the null hypothesis, suggesting the variances are different.; We fail to reject the null hypothesis, suggesting the variances are equal.; We accept the null hypothesis, proving the variances are the same.; The test is inconclusive.
   CorrectAnswer: We reject the null hypothesis, suggesting the variances are different.
   AnswerTests: omnitest(correctVal='We reject the null hypothesis, suggesting the variances are different.')
   Hint: "Is the p-value less than alpha (0.05)? If so, we reject the null hypothesis of equal variances."
 
 - Class: text
-  Output: "Exactly. Because the p-value (0.025) is less than 0.05, we reject the null hypothesis of equal variances. This is an important finding! It tells us we should use a statistical test that does not assume equal variances (like Welch's T-Test) when we later compare the average immersion scores between the 'Enabled' and 'Disabled' groups."
+  Output: "Exactly. Because the p-value (0.00959) is less than 0.05, we reject the null hypothesis of equal variances. This is an important finding! It tells us we should use a statistical test that does not assume equal variances (like Welch's T-Test) when we later compare the average immersion scores between the 'Enabled' and 'Disabled' groups."
 
 - Class: text
   Output: "Now, Levene's Test can be used on more than two groups and has other options. Let's look at another example to see how the test can be modified."
@@ -107,7 +107,30 @@
 #30 
 
 - Class: text
+  Output: In another study, researchers wanted to replicate and extend a paper from 2004. In their 2022 study, they present participants with someone looking for help to load a sofa into a van. Some participants were told that if someone were to help the person, that helper would receive 50 cents ($0.50), which they called a low cash payment. Others were told the helper would receive $5, which they called a medium cash payment. Others were told that the helper would not receive a payment for helping (With mention of control), and others were told nothing about the payment (Without mention of control). They also tested to see if it was sweets (candy or chocolate) instead of cash, but we won't analyze those. Based on this information, participants were asked how much they expected people to help this poor sofa-moving soul.
+  
+- Class: text
+  Output: They had a hypothesis -  The expected willingness to help in the nonpayment condition is higher than in the low monetary payment condition. 
+  
+- Class: text
+  Output: The citation for this study is "Imada, H., Chan, W. F., Ng, Y. K., Man, L. H., Wong, M. S., Cheng, B. L., & Feldman, G. (2022). Rewarding More Is Better for Soliciting Help, Yet More So for Cash Than for Goods. Revisiting and Reframing the Tale of Two Markets With Replications and Extensions of Heyman and Ariely (2004). Collabra Psychology, 8(1), 32572. https://doi.org/10.1525/collabra.32572".
+  
+
+  - Class: cmd_question
+  Output: We've also loaded their dataset in your environment, called df2. Run df2 |> summary() to learn more about it.
+  CorrectAnswer: df2 |> summary()
+  AnswerTests: omnitest(correctExpr='df2 |> summary()')
+  Hint: df2 |> summary()
+
+- Class: cmd_question
+  Output: To understand the variables, let's tabulate using table() on the Condition variable.  To do this, take our data, df2, and then (|>) select() the variable we want to look at, Condition, and then (|>) use the table() function.
+  CorrectAnswer: df2 |> select(Condition) |> table()
+  AnswerTests: any_of_exprs('df2 |> select(Condition) |> table()', 'df2 %>% select(Condition) %>% table()', 'df2 %>% select(Condition) %>% table', 'table(df2$Condition)')
+  Hint: One way to do it would be to write df2 |> select(Condition) |> table(), or you can write table(df2$Condition).
+
+- Class: text
   Output: "Now, we won't look at the results here (but they did find that not being told the chance of money had participants report higher expectations of help compared to the low money condition). Instead, they used Welch's ANOVA - a specific kind of ANOVA that does not assume homogeneity of variances! "
+
 
 - Class: text
   Output: "They write: In the pre-registration, we did not explicitly mention whether we would use a conventional Fisher's or Welch's ANOVA. However, given that Levene's test indicated that the assumption of equal variance was violated (F(3, 1097) = 3.77, p = .01)...." 
