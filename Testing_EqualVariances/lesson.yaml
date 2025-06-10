@@ -14,7 +14,7 @@
   Script: Notes.R
 
 - Class: text
-  Output: If you have not first reviewed the basics on GGPlot, specifically on the violin plot and facet_grid(), you may want to complete these modules first. 
+  Output: If you have not first reviewed the basics on GGPlot, specifically on the violin plot and facet_grid(), we suggest you to complete these modules first. 
 
 - Class: text
   Output: Many of our parametric tests come with the assumption that each group we are analyzing has the same variance. We also can expand this definition when we turn to regressions, where we are assuming that the variance remains the same across the range of values.
