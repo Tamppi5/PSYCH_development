@@ -95,7 +95,7 @@
   Output: "Given a p-value of 0.025 and a standard alpha level of 0.05, what do you conclude?"
   AnswerChoices: "We reject the null hypothesis, suggesting the variances are different."; "We fail to reject the null hypothesis, suggesting the variances are equal."; "We accept the null hypothesis, proving the variances are the same."; "The test is inconclusive."
   CorrectAnswer: "We reject the null hypothesis, suggesting the variances are different."
-  AnswerTests: omnitest(correctVal='We reject the null hypothesis, suggesting the variances are different.')
+  AnswerTests: omnitest(correctVal="We reject the null hypothesis, suggesting the variances are different.")
   Hint: "Is the p-value less than alpha (0.05)? If so, we reject the null hypothesis of equal variances."
 
 - Class: text
