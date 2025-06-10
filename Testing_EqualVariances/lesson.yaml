@@ -55,9 +55,9 @@
 
 - Class: mult_question
   Output: "Based on the output, how many variables are in this dataset?"
-  AnswerChoices: 24; 7; 15; 401
-  CorrectAnswer: 24
-  AnswerTests: omnitest(correctVal='24')
+  AnswerChoices: 4; 7; 15; 401
+  CorrectAnswer: 4
+  AnswerTests: omnitest(correctVal='4')
   Hint: "Look at the first line of the glimpse() output, or check your Environment tab."
 
 - Class: text
