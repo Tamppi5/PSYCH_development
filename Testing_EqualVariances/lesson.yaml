@@ -4,7 +4,7 @@
   Author: Robin Welsch & Tapio Tuloisela
   Type: Standard
   Organization: Aalto University
-  Version: 4.1.0
+  Version: 4.0.0
 
 #1
 - Class: script
@@ -14,157 +14,156 @@
   Script: Notes.R
 
 - Class: text
-  Output: If you have not first reviewed the basics on GGPlot, specifically on the violin plot and facet_grid(), we suggest you to complete these modules first.
+  Output: If you have not first reviewed the basics on GGPlot, specifically on the violin plot and facet_grid(), we suggest you to complete these modules first. 
 
 - Class: text
   Output: Many of our parametric tests come with the assumption that each group we are analyzing has the same variance. We also can expand this definition when we turn to regressions, where we are assuming that the variance remains the same across the range of values.
 
 - Class: text
   Output: This can be a tricky assumption to meet.
-
+  
 - Class: text
   Output: How do we examine whether or not this assumption is made?
-
+  
 - Class: text
   Output: The most basic way, especially when simply considering the variance between two groups, is to use the F Test, where we check the ratio between the variance of Group 1 and the variance of Group 2. If they are equal, the ratio between them should be 1. A short rule of thumb is that if the variance ratio is >3, you probably have some inequality between the variances of groups.
-
+  
 - Class: text
   Output: However, the F Test is very sensitive to outliers and non-normality, so we consider it only as a first check.
-
+  
 - Class: text
-  Output: Instead, we will use 'the best' test of testing for equal variances, Levene's Test. However, it should be noted that Levene's Test also has its problems - it has very low power with low sample sizes and struggles when sample sizes are very uneven (c.f. Nordstokke & Zumbo, 2007).
-
+  Output: Instead, we will use 'the best' test of testing non-normality, Levene's Test. However, it should be noted that Levene's Test also has its problems - it has very low power with low sample sizes and struggles when sample sizes are very uneven (c.f. Nordstrokke & Zumbo, 2007).
+  
 - Class: text
   Output: The full prior citation is - Nordstokke, D. W. & Zumbo, B. D. (2007). A Cautionary Tale about Levene's Tests for Equal Variances. Journal of Educational Research & Policy Studies, 7(1), 1–14.
 
 #10
 - Class: text
-  Output: In a 2022 study, Matias N. Selzer and Silvia M. Castro wanted to understand what factors in a virtual reality setup contribute most to a user's sense of "immersion".
+  Output: "To explore this, we'll use a dataset from a 2022 study by Matias N. Selzer and Silvia M. Castro. They wanted to understand what factors in a virtual reality setup contribute most to a user's sense of 'immersion'."
 
 - Class: text
-  Output: "Their experiment involved 401 trials where users experienced a VR environment with different system settings. After each trial, the user's immersion level was recorded. One of the key settings they manipulated was 'stereopsis' - whether the user saw a flat image (Disabled) or a stereoscopic 3D image (Enabled). We want to see if the *variance* in immersion scores is different between these two groups. We've loaded their data in your environment under the variable `data`."
+  Output: "Their experiment involved 401 trials where users experienced a VR environment with different system settings. After each trial, the user's immersion level was recorded. One of the key settings they manipulated was 'Stereopsis' - whether the user saw a flat image ('Disabled') or a stereoscopic 3D image ('Enabled'). We want to see if the *variance* in immersion scores is different between these two groups. We've loaded their data for you into a variable called `data`."
 
 - Class: text
-  Output: "The citation for this paper is- Selzer, M. N., & Castro, S. M. (2022). Immersion Metrics for Virtual Reality [Data set]. Mendeley Data. https://doi.org/10.17632/kj79vpcsc5.2"
-
+  Output: "The citation for this paper is: Selzer, M. N., & Castro, S. M. (2022). Immersion Metrics for Virtual Reality [Data set]. Mendeley Data. https://doi.org/10.17632/kj79vpcsc5.2"
+  
 - Class: cmd_question
-  Output: Look at the data now by running data |> summary().
-  CorrectAnswer: data |> summary()
-  AnswerTests: omnitest(correctExpr='data |> summary()')
-  Hint: Try data |> summary()
+  Output: "First, let's get a glimpse of the data's structure. Use the glimpse() function on the `data` object."
+  CorrectAnswer: data |> glimpse()
+  AnswerTests: omnitest(correctExpr='data |> glimpse()')
+  Hint: Try `data |> glimpse()`
 
 - Class: mult_question
-  Output: How many total variables are in this dataset?
+  Output: "Based on the output, how many variables are in this dataset?"
   AnswerChoices: 24; 7; 15; 401
   CorrectAnswer: 24
   AnswerTests: omnitest(correctVal='24')
-  Hint: Look in your Environment tab.
+  Hint: "Look at the first line of the glimpse() output, or check your Environment tab."
 
 - Class: text
-  Output: Great job. So, there are 24 variables. We will, for now, look primarily at `stereopsis` (whether stereoscopic 3D was Enabled or Disabled) and `totalImmersion` (a numerical score indicating how immersed the user felt).
-
+  Output: "Great job. There are 24 variables. For now, we will focus on `Stereopsis` (whether stereoscopic 3D was Enabled or Disabled) and `ImmersionScore` (a numerical score indicating how immersed the user felt)."
+  
 - Class: cmd_question
-  Output: Our first step when given a dataset should be visualizing it. Let us use ggplot2 to plot a violin plot. To do this, remember to take our data `data`, and pipe (|>) it into ggplot(). ggplot() takes one argument, aes(), which itself takes two arguments, our variables. Our y variable (y) should be equal to (=) `totalImmersion` and our x variable (x) will be our explanatory variable equal to (=) `stereopsis`. After that, add (+) a layer called geom_violin().
-  CorrectAnswer: data |> ggplot(aes(x=stereopsis, y=totalImmersion))+geom_violin()
-  AnswerTests: any_of_exprs('data |> ggplot(aes(x=stereopsis, y=totalImmersion))+geom_violin()', 'data %>% ggplot(aes(x=stereopsis, y=totalImmersion)) + geom_violin()')
-  Hint: data |> ggplot(aes(x=stereopsis, y=totalImmersion))+geom_violin()
+  Output: "Our first step with a new dataset should be to visualize it. Let's use ggplot2 to create a violin plot. To do this, pipe the `data` object into ggplot(). Inside ggplot(), specify the aesthetics with `aes()`: the y-variable should be `ImmersionScore` and the x-variable should be `Stereopsis`. After that, add a `geom_violin()` layer."
+  CorrectAnswer: data |> ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()
+  AnswerTests: any_of_exprs('data |> ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()', 'data %>% ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()')
+  Hint: `data |> ggplot(aes(x=Stereopsis, y=ImmersionScore)) + geom_violin()`
 
 - Class: mult_question
-  Output: What group looks like it has a larger variance than the other?
+  Output: "Based on the plot, which group appears to have a larger variance (i.e., is wider)?"
   AnswerChoices: Disabled; Enabled
   CorrectAnswer: Disabled
   AnswerTests: omnitest(correctVal='Disabled')
-  Hint: Which of the two violins is wider, indicating a larger spread in the data?
-
+  Hint: "Which of the two violins is wider, indicating a larger spread in the data? For this example, assume the 'Disabled' violin is visibly wider."
+  
 - Class: text
-  Output: Indeed! The "Disabled" group looks a bit wider than the "Enabled" group. This may suggest that there are differences in the variances. So, visually, we should be concerned.
-
+  Output: "Indeed! The 'Disabled' group looks a bit wider than the 'Enabled' group. This suggests there might be a difference in the variances. Visual inspection is a good first step, but we need a formal test to confirm this."
+  
 - Class: text
-  Output: There are a few ways to quantify this difference. In this Module, we will consider Levene's Test. Levene's tests the null hypothesis that the variances are homogeneous - that there is no difference between the variances of the groups.
+  Output: "We will use Levene's Test to formally check for homogeneity of variances. The null hypothesis (H0) of Levene's Test is that the variances are equal across all groups."
 
-#20
 - Class: cmd_question
-  Output: To use this test, we can use the function levene_test() in the rstatix package. To run this test, pipe the data into levene_test(). The first argument in the function is the equation we are interested in testing, written by our response variable ~ explanatory variable. Try it now.
-  CorrectAnswer: data |> levene_test(totalImmersion ~ stereopsis)
-  AnswerTests: omnitest(correctExpr='data |> levene_test(totalImmersion ~ stereopsis)')
-  Hint: Put the following in your console -  data |> levene_test(totalImmersion ~ stereopsis)
-
+  Output: "To run this test, we can use the `levene_test()` function from the `rstatix` package. Pipe the `data` object into `levene_test()`. The argument to the function is a formula specifying the relationship we want to test: `ImmersionScore ~ Stereopsis`. Try it now."
+  CorrectAnswer: data |> levene_test(ImmersionScore ~ Stereopsis)
+  AnswerTests: omnitest(correctExpr='data |> levene_test(ImmersionScore ~ Stereopsis)')
+  Hint: `data |> levene_test(ImmersionScore ~ Stereopsis)`
+  
 - Class: text
-  Output: So we can see that this test's df1 (1) represents k-1, where K is the number of groups. df2 (399) represents N-k, where N is the number of observations, and k is the number of groups. Our test statistic, 5.08, is tested against an F distribution with (1,399) degrees of freedom. That gives a p-value of .0248.
-
+  Output: "The test output shows the degrees of freedom (df1, df2), the F statistic, and the p-value. For our dataset, the test returns a p-value of 0.025."
+  
 - Class: mult_question
-  Output: What do you conclude about this data, given an alpha of .05?
-  AnswerChoices: We reject the null hypothesis - there is evidence their variances are different; We reject the null hypothesis - there is evidence their variances are the same; We fail to reject the null hypothesis - there is evidence their variances are different; We fail to reject the null hypothesis - there is evidence their variances are the same.
-  CorrectAnswer: We reject the null hypothesis - there is evidence their variances are different
-  AnswerTests: omnitest(correctVal='We reject the null hypothesis - there is evidence their variances are different')
-  Hint: Is the p-value less than an alpha of .05?
+  Output: "Given a p-value of 0.025 and a standard alpha level of 0.05, what do you conclude?"
+  AnswerChoices: "We reject the null hypothesis, suggesting the variances are different."; "We fail to reject the null hypothesis, suggesting the variances are equal."; "We accept the null hypothesis, proving the variances are the same."; "The test is inconclusive."
+  CorrectAnswer: "We reject the null hypothesis, suggesting the variances are different."
+  AnswerTests: omnitest(correctVal='We reject the null hypothesis, suggesting the variances are different.')
+  Hint: "Is the p-value less than alpha (0.05)? If so, we reject the null hypothesis of equal variances."
 
 - Class: text
-  Output: Exactly. Because the p-value is less than 0.05, we reject the null hypothesis of equal variances. This suggests we should use a statistical test that does not assume the variances are equal, like Welch's T-Test, when comparing the group means.
+  Output: "Exactly. Because the p-value (0.025) is less than 0.05, we reject the null hypothesis of equal variances. This is an important finding! It tells us we should use a statistical test that does not assume equal variances (like Welch's T-Test) when we later compare the average immersion scores between the 'Enabled' and 'Disabled' groups."
 
 - Class: text
-  Output: We can do Levene's Test on more than just two groups. Let's look at another variable from our VR dataset: `illumination`, which has three levels: 'Low', 'Medium', and 'High'.
+  Output: "Now, Levene's Test can be used on more than two groups and has other options. Let's look at another example to see how the test can be modified."
 
-#30
-
-- Class: text
-  Output: "We might want to know if the variance in user immersion is the same across these three different lighting conditions. This is important because if one lighting condition creates a much more variable experience, it might not be a reliable setting."
+#30 
 
 - Class: text
-  Output: "Let's test this. Remember that the default for `levene_test()` is to use the median, which is a robust choice."
+  Output: "Now, we won't look at the results here (but they did find that not being told the chance of money had participants report higher expectations of help compared to the low money condition). Instead, they used Welch's ANOVA - a specific kind of ANOVA that does not assume homogeneity of variances! "
+
+- Class: text
+  Output: "They write: In the pre-registration, we did not explicitly mention whether we would use a conventional Fisher's or Welch's ANOVA. However, given that Levene's test indicated that the assumption of equal variance was violated (F(3, 1097) = 3.77, p = .01)...." 
+  
+- Class: cmd_question
+  Output: "Can we replicate this result? Let us try what we've learned on this dataset, running Expected ~ Condition through levene_test() and piping the df2 on the left-hand side."
+  CorrectAnswer: df2 |> levene_test(Expected ~ Condition)
+  AnswerTests: omnitest(correctExpr='df2 |> levene_test(Expected ~ Condition)')
+  Hint: df2 |> levene_test(Expected ~ Condition)
 
 - Class: cmd_question
-  Output: "Let's try what we've learned on this new grouping. Run a Levene's test on the `data` dataset, testing `totalImmersion` by `illumination`."
-  CorrectAnswer: data |> levene_test(totalImmersion ~ illumination)
-  AnswerTests: omnitest(correctExpr='data |> levene_test(totalImmersion ~ illumination)')
-  Hint: data |> levene_test(totalImmersion ~ illumination)
-
-- Class: cmd_question
-  Output: This gives us a non-significant result (p > .05), suggesting the variances are equal. But what if the original researchers had a reason to use the original Levene's Test, which is based on the mean? Let's find out how to do that by pulling up the help file for `levene_test()`. You can view the help file by running ?function_name.
+  Output: Uh oh! That is not what they had. While our df1 (3) and df2 (1097) are the same, our test statistics (3.77 v 0.827) and p values (p=.01 v. p=.479) are different. We might wonder what is going on. Let's pull up the help file of levene_test(). You can view the help file by running ?function_name, with question mark in front.
   CorrectAnswer: "?levene_test"
   AnswerTests: any_of_exprs('?levene_test', '?levene_test()')
   Hint: "?levene_test"
 
 - Class: text
-  Output: See how the third argument is called `center`; its default value is `median`. The description states that `mean` gives the original Levene's Test results, but `median` is more robust. What happens if we specify the center as the mean?
+  Output: See how the third argument is called center; its default value is median. The description states that the mean gives the original Levene's Test results, but the median is more robust. Did the authors choose the original test?
 
 - Class: text
-  Output: "Let's find out if this changes the result for our `illumination` grouping variable."
+  Output: "As a reminder, they write: In the pre-registration, we did not explicitly mention whether we would use a conventional Fisher's or Welch's ANOVA. However, given that Levene's test indicated that the assumption of equal variance was violated (F(3, 1097) = 3.77, p = .01)."
 
 - Class: cmd_question
-  Output: "Let's try that again, but this time, inside of `levene_test()`, pass a second argument after `totalImmersion ~ illumination` to set `center` equal to `mean`. On the left hand side, continue to pipe the dataset, `data`."
-  CorrectAnswer: data |> levene_test(totalImmersion ~ illumination, center=mean)
-  AnswerTests: omnitest(correctExpr='data |> levene_test(totalImmersion ~ illumination, center=mean)')
-  Hint: data |> levene_test(totalImmersion ~ illumination, center=mean)
+  Output: "Let's try that again, but this time, inside of levene_test(), pass a second argument after Expected ~ Condition to set center equal to mean. On the left hand side, continue to pipe the dataset, df2."
+  CorrectAnswer: df2 |> levene_test(Expected ~ Condition, center=mean)
+  AnswerTests: omnitest(correctExpr='df2 |> levene_test(Expected ~ Condition, center=mean)')
+  Hint: df2 |> levene_test(Expected ~ Condition, center=mean)
 
 - Class: text
-  Output: The result is still non-significant, but the p-value and F-statistic changed. This highlights how the choice of centering can affect the test. Great job.
-
+  Output: It looks like they did! Great job.
+  
 - Class: text
-  Output: Now, Levene's Test has its own set of limitations. Levene's Test is sensitive to sample size and will more easily be able to reject when sample size is large. You should make your judgement call on deciding how big of a sample is enough.
+  Output: Now, Levene's Test has its own set of limitations. Levene's Test is sensitive to sample size and will more easily be able to reject when sample size is large. You should make your judgement call on deciding how big of a sample is enough. 
 
 #40
 - Class: text
-  Output: Also, as we saw, there are differences between what kind of test you are running even within Levene's - are we testing the means or the medians? The `center` being set to `median` is generally preferred when you have a clear skewed distribution of your Y variable within a group. In contrast, the `mean` is preferred for symmetrically tailed distributions.
+  Output: Also, as we saw, there are differences between what kind of test you are running even within Levene's - are we testing the means or the medians? The center being set to the median is generally preferred when you have a clear skewed distribution of your Y variable within a group. In contrast, the mean is preferred for symmetrically tailed distributions.
 
 - Class: text
-  Output: Before we toss this analysis to the side, we should check to see if the data, per group, is relatively symmetrical or if there is a skew. It may be that using the mean as the center is justified if the distributions are symmetrical.
-
+  Output: Before we toss this analysis to the side, we should check to see if the data, per group, is relatively symmetrical or if there is a skew. It may be that the authors were correct in their analysis of Levene's Test and using the mean *if* there is no skew. 
+  
 - Class: cmd_question
-  Output: We can check this by plotting our data. Let us pass our `data` frame into a ggplot() call, where we want the aes() `x` value to be `totalImmersion`. We will add onto that call that we want to plot geom_histogram() and that we also want to facet_wrap(~illumination).
-  CorrectAnswer: data |> ggplot(aes(x=totalImmersion))+geom_histogram()+facet_wrap(~illumination)
-  AnswerTests: omnitest(correctExpr='data |> ggplot(aes(x=totalImmersion))+geom_histogram()+facet_wrap(~illumination)')
-  Hint: data |> ggplot(aes(x=totalImmersion))+geom_histogram()+facet_wrap(~illumination)
+  Output: We can check this by plotting our data. Let us pass our data frame, df2, into a ggplot() call, where we want the aes() x value to be Expected. We will add onto that call that we want to plot geom_histogram() and that we also want to facet_wrap(~Condition). 
+  CorrectAnswer: df2 |> ggplot(aes(x=Expected))+geom_histogram()+facet_wrap(~Condition)
+  AnswerTests: omnitest(correctExpr='df2 |> ggplot(aes(x=Expected))+geom_histogram()+facet_wrap(~Condition)')
+  Hint: df2 |> ggplot(aes(x=Expected))+geom_histogram()+facet_wrap(~Condition)
 
 - Class: mult_question
-  Output: Do any of the groups show a strong skew?
-  AnswerChoices: Low; Medium; High; None; All
-  CorrectAnswer: None
-  AnswerTests: omnitest(correctVal='None')
-  Hint: Look at the histograms. Are any of them clearly lopsided?
+  Output: Which group has a strong skew?
+  AnswerChoices: Low cash; Medium cash; With mention; without mention; None; All
+  CorrectAnswer: Low cash
+  AnswerTests: omnitest(correctVal='Low cash')
+  Hint: Only one of the four groups shows a strong positive skew. Which one?
 
 - Class: text
-  Output: Exactly. None of the distributions show a strong skew, so using `center=mean` would have been an acceptable choice in this case, even though `center=median` is the more robust default.
+  Output: Indeed. This is too bad because as we saw, the difference between center=mean and center=median was quite significant! Because there was a skew, we should have set center=median. That would have led us to fail to reject the null hypothesis that there were differences in variance between groups, and the authors should have continued with a standard one-way ANOVA.
 
 - Class: text
   Output: "Still, we can commonly apply this test to our lessons. We also can consider the heteroscedasticity of regression error terms. "
@@ -181,17 +180,17 @@
 - Class: text
   Output: Remember, the simplest explanation of a regression is trying to draw a line of best fit through a scatterplot. We use these coefficients to estimate what our data says is our most expected observation, given specific values. We call this the "fitted" value. But these fitted values differ from the truth - what our data shows. We call that distance from the estimated line to the actual points the residuals.
 
-#50
+#50 
 
 - Class: cmd_question
   Output: We can pipe our model `vrLM` into ggplot(), naming the aes() for x to be .fitted and y to be .resid. Add on a point geom (geom_point()) after the ggplot call to visualize the residuals.
   CorrectAnswer: vrLM |> ggplot(aes(x=.fitted, y=.resid))+geom_point()
   AnswerTests: omnitest(correctExpr='vrLM |> ggplot(aes(x=.fitted, y=.resid))+geom_point()')
   Hint: vrLM |> ggplot(aes(x=.fitted, y=.resid))+geom_point()
-
+  
 - Class: text
   Output: You should review the regression module for more information, but if you look closely, there isn't a strong, obvious pattern here like a funnel shape. The points look fairly randomly scattered. This is a good sign, but we should test it formally.
-
+  
 - Class: cmd_question
   Output: The library lmtest has a function called bptest(). This stands for the Breusch-Pagan Test, a test for the heteroscedasticity of residuals if given a model. Pass our model, vrLM, as an argument into bptest().
   CorrectAnswer: bptest(vrLM)
